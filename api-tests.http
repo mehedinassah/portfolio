@@ -1,0 +1,41 @@
+### Mehedi Portfolio API Tests
+### Install "REST Client" extension to run these
+
+@baseUrl = http://localhost:8080/api
+
+###
+# GET all projects
+GET {{baseUrl}}/projects
+Accept: application/json
+
+###
+# GET a single project by ID
+GET {{baseUrl}}/projects/1
+Accept: application/json
+
+###
+# GET all skills
+GET {{baseUrl}}/skills
+Accept: application/json
+
+###
+# POST contact message
+POST {{baseUrl}}/contact
+Content-Type: application/json
+
+{
+  "name": "John Recruiter",
+  "email": "john@company.com",
+  "message": "Hi Mehedi! We have an exciting remote position for you. Would love to connect."
+}
+
+###
+# POST contact - validation test (missing fields)
+POST {{baseUrl}}/contact
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "not-an-email",
+  "message": "short"
+}

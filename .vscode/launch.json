@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🚀 Start React Frontend",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "env": {
+        "BROWSER": "chrome"
+      },
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "🍃 Start Spring Boot Backend",
+      "type": "java",
+      "request": "launch",
+      "mainClass": "com.mehedi.portfolio.PortfolioApplication",
+      "projectName": "portfolio",
+      "cwd": "${workspaceFolder}/backend"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "🎯 Run Full Stack (Frontend + Backend)",
+      "configurations": [
+        "🚀 Start React Frontend",
+        "🍃 Start Spring Boot Backend"
+      ],
+      "stopAll": true
+    }
+  ]
+}
