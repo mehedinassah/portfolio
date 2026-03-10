@@ -1,10 +1,10 @@
-# 🚀 Mehedi Hassan — Developer Portfolio
+# Mehedi Hassan — Developer Portfolio
 
 A modern, full-stack developer portfolio built with **React + TailwindCSS** (frontend) and **Java Spring Boot** (backend). Designed to impress international recruiters and land remote developer jobs.
 
 ---
 
-## ✨ Features
+## Features
 
 - **Dark, modern UI** with gradient accents, grid background, and glassmorphism
 - **Typing animation** hero section with role cycling
@@ -18,7 +18,7 @@ A modern, full-stack developer portfolio built with **React + TailwindCSS** (fro
 
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 mehedi-portfolio/
@@ -71,7 +71,7 @@ mehedi-portfolio/
 
 ---
 
-## 🛠️ Local Development
+## Local Development
 
 ### Prerequisites
 - **Java 17+**
@@ -109,7 +109,7 @@ App will run at: `http://localhost:3000`
 
 ---
 
-## 🚀 Deployment
+##  Deployment
 
 ### Frontend → Vercel (Free)
 
