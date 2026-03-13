@@ -19,7 +19,6 @@ A modern, full-stack developer portfolio built with **React + TailwindCSS** (fro
 
 ## Project Structure
 
-```
 mehedi-portfolio/
 ├── backend/                      # Spring Boot API
 │   ├── src/main/java/com/mehedi/portfolio/
@@ -66,62 +65,5 @@ mehedi-portfolio/
     ├── tailwind.config.js
     ├── package.json
     └── vercel.json
-```
-
----
-
-## Local Development
-
-### Prerequisites
-- **Java 17+**
-- **Maven 3.8+**
-- **Node.js 18+**
-- **npm 9+**
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/mehedihassan/portfolio.git
-cd mehedi-portfolio
-```
-
-### 2. Start Backend (Spring Boot)
-```bash
-cd backend
-mvn spring-boot:run
-```
-API will run at: `http://localhost:8080`
-
-Available endpoints:
-- `GET  /api/projects` — All projects
-- `GET  /api/projects/{id}` — Single project
-- `GET  /api/skills` — All skills
-- `POST /api/contact` — Send contact message
-
-### 3. Start Frontend (React)
-```bash
-cd frontend
-npm install
-cp .env.example .env.local
-npm start
----
-
-## 📱 Sections
-
-| # | Section | Description |
-|---|---------|-------------|
-| 1 | **Hero** | Name, animated role titles, CTA buttons, stats |
-| 2 | **About** | Bio, quick facts, tech stack grid |
-| 3 | **Skills** | Animated progress bars by category |
-| 4 | **Projects** | Filterable project cards with links |
-| 5 | **Experience** | Work history + education |
-| 6 | **Contact** | Form connected to backend API |
-
----
-
-## 📝 License
-
-MIT — feel free to use this as a template for your own portfolio.
-
----
 
 Built with ❤️ by Mehedi Hassan | Bangladesh 🇧🇩
