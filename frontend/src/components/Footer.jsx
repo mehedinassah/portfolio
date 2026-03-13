@@ -39,7 +39,7 @@ export default function Footer() {
               },
               {
                 label: "Email",
-                href: "mailto:idehemnassah@gmail.com",
+                href: "mailto:ididehemnassah@gmail.com",
                 icon: (
                   <svg
                     className="w-5 h-5"
