@@ -128,9 +128,9 @@ export default function About() {
               </p>
               <div className="space-y-3">
                 {[
-                  { icon: "📱", title: "Android Apps", desc: "Native Kotlin with MVVM" },
-                  { icon: "🌐", title: "Web Apps", desc: "React + Spring Boot APIs" },
-                  { icon: "🤖", title: "AI Tools", desc: "LLM-powered applications" },
+                  { icon: "📱", title: "Android Apps" },
+                  { icon: "🌐", title: "Web Apps" },
+                  { icon: "🤖", title: "AI Tools" },
                 ].map((item) => (
                   <div key={item.title} className="flex items-center gap-3">
                     <span className="text-xl">{item.icon}</span>
