@@ -19,6 +19,7 @@ A modern, full-stack developer portfolio built with **React + TailwindCSS** (fro
 
 ## Project Structure
 
+---
 mehedi-portfolio/
 ├── backend/                      # Spring Boot API
 │   ├── src/main/java/com/mehedi/portfolio/
@@ -65,5 +66,6 @@ mehedi-portfolio/
     ├── tailwind.config.js
     ├── package.json
     └── vercel.json
+---
 
 Built with ❤️ by Mehedi Hassan | Bangladesh 🇧🇩
