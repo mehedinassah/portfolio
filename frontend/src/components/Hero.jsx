@@ -127,7 +127,7 @@ export default function Hero() {
         {/* Stats row */}
         <div className="flex flex-wrap justify-center gap-8 md:gap-16">
           {[
-            { value: "6+", label: "Projects Built" },
+            { value: "8+", label: "Projects Built" },
             { value: "4+", label: "Years Coding" },
             { value: "3", label: "Tech Stacks" },
             { value: "∞", label: "Curiosity" },
