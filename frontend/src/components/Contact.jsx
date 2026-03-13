@@ -59,7 +59,7 @@ export default function Contact() {
             Let's Work Together
           </h2>
           <p className="text-white/40 max-w-lg font-body">
-            Looking for a dedicated remote developer? I'd love to hear from you.
+            Looking for a dedicated developer? I'd love to hear from you.
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export default function Contact() {
                 {
                   icon: "📍",
                   label: "Location",
-                  value: "Bangladesh (Remote)",
+                  value: "Dhaka, Bangladesh",
                   href: null,
                   color: "#10b981",
                 },
