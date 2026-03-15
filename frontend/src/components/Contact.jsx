@@ -76,8 +76,8 @@ export default function Contact() {
                 {
                   icon: "📧",
                   label: "Email",
-                  value: "ididehemnassah@gmail.com",
-                  href: "mailto:ididehemnassah@gmail.com",
+                  value: "idehemnassah@gmail.com",
+                  href: "mailto:idehemnassah@gmail.com",
                   color: "#00d4ff",
                 },
                 {

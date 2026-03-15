@@ -48,9 +48,21 @@ export default function About() {
           {/* Left: Bio */}
           <div className="space-y-6">
             {/* Avatar placeholder */}
-            <div className="w-20 h-20 rounded-2xl gradient-border flex items-center justify-center text-4xl mb-8">
-              <div className="w-full h-full rounded-2xl bg-gradient-to-br from-[#00d4ff]/20 to-[#8b5cf6]/20 flex items-center justify-center text-5xl">
-                👨‍💻
+            {/* Profile Image */}
+            <div className="relative w-48 h-48 md:w-64 md:h-64 mb-8">
+              <div className="w-full h-full rounded-2xl overflow-hidden border border-[#00d4ff]/20 shadow-2xl shadow-[#00d4ff]/10">
+                <img
+                  src="/mehedi.jpg"
+                  alt="Mehedi Hassan"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              {/* Glow border */}
+              <div className="absolute inset-0 rounded-2xl border border-[#00d4ff]/10 animate-pulse" />
+              {/* Online dot */}
+              <div className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-[#030712]/80 px-2.5 py-1 rounded-full border border-[#10b981]/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
+                <span className="text-[#10b981] text-xs font-mono">Available</span>
               </div>
             </div>
 
@@ -79,7 +91,7 @@ export default function About() {
             {/* Quick facts */}
             <div className="grid grid-cols-2 gap-4 mt-8">
               {[
-                { label: "Location", value: "Bangladesh 🇧🇩", icon: "📍" },
+                { label: "Location", value: "Dhaka, Bangladesh 🇧🇩", icon: "📍" },
                 { label: "Focus", value: "Remote & On-site", icon: "🌍" },
                 { label: "Speciality", value: "Android + Web", icon: "💻" },
                 { label: "Status", value: "Available Now", icon: "🟢" },
