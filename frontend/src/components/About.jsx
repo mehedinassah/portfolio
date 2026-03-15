@@ -52,7 +52,7 @@ export default function About() {
             <div className="relative w-48 h-48 md:w-64 md:h-64 mb-8">
               <div className="w-full h-full rounded-2xl overflow-hidden border border-[#00d4ff]/20 shadow-2xl shadow-[#00d4ff]/10">
                 <img
-                  src="/mehedi.jpg"
+                  src={`${process.env.PUBLIC_URL}/mehedi.jpg`}
                   alt="Mehedi Hassan"
                   className="w-full h-full object-cover object-top"
                 />
