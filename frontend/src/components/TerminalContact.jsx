@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { MdMail } from "react-icons/md";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 
 const TerminalContact = () => {
   const [input, setInput] = useState("");
+  const [hoveredIcon, setHoveredIcon] = useState(null);
   const [history, setHistory] = useState([
     { type: "system", text: "$ contact --me" },
     { type: "system", text: "Welcome to Mehedi Hassan's contact terminal 🚀" },
@@ -208,7 +208,7 @@ const TerminalContact = () => {
         >
           {[
             {
-              icon: MdMail,
+              icon: FaEnvelope,
               title: "Email",
               value: "idehemnassah@gmail.com",
               href: "mailto:idehemnassah@gmail.com",
@@ -227,6 +227,7 @@ const TerminalContact = () => {
             },
           ].map((link, idx) => {
             const IconComponent = link.icon;
+            const isHovered = hoveredIcon === idx;
             return (
               <motion.a
                 key={idx}
@@ -235,8 +236,12 @@ const TerminalContact = () => {
                 rel="noreferrer"
                 className="p-6 rounded-lg bg-accent-slate/5 border border-accent-blue/20 hover:border-accent-blue/50 transition-all group"
                 whileHover={{ scale: 1.05, borderColor: "rgb(59, 130, 246)" }}
+                onMouseEnter={() => setHoveredIcon(idx)}
+                onMouseLeave={() => setHoveredIcon(null)}
               >
-                <IconComponent className="text-4xl mb-3 text-accent-blue group-hover:text-white transition-colors" />
+                <div className="mb-4 flex justify-center">
+                  <IconComponent style={{ fontSize: "52px", color: isHovered ? "#ffffff" : "#3b82f6", transition: "color 0.3s ease" }} />
+                </div>
                 <h4 className="text-white font-bold mb-1">{link.title}</h4>
                 <p className="text-accent-slate text-sm group-hover:text-accent-blue transition-colors truncate">
                   {link.value}
