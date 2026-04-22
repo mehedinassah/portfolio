@@ -1,0 +1,26 @@
+{
+  "recommendations": [
+    // Java & Spring Boot
+    "redhat.java",
+    "vscjava.vscode-java-pack",
+    "vmware.vscode-spring-boot",
+    "vscjava.vscode-spring-initializr",
+    "vscjava.vscode-maven",
+
+    // React / JS
+    "dsznajder.es7-react-js-snippets",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+
+    // Tailwind CSS
+    "bradlc.vscode-tailwindcss",
+
+    // General Dev
+    "eamodio.gitlens",
+    "pkief.material-icon-theme",
+    "zhuangtongfa.material-theme",
+    "streetsidesoftware.code-spell-checker",
+    "humao.rest-client",
+    "rangav.vscode-thunder-client"
+  ]
+}
