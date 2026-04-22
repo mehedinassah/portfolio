@@ -1,8 +1,9 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "npm install --legacy-peer-deps && npm run build",
   "outputDirectory": "build",
   "env": {
-    "CI": "false"
+    "CI": "false",
+    "NODE_ENV": "production"
   },
   "functions": {
     "api/**/*.js": {
