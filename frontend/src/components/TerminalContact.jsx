@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import { MdMail } from "react-icons/md";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 
 const TerminalContact = () => {
   const [input, setInput] = useState("");
@@ -206,39 +208,42 @@ const TerminalContact = () => {
         >
           {[
             {
-              icon: "📧",
+              icon: MdMail,
               title: "Email",
               value: "idehemnassah@gmail.com",
               href: "mailto:idehemnassah@gmail.com",
             },
             {
-              icon: "💼",
+              icon: FaLinkedin,
               title: "LinkedIn",
               value: "linkedin.com/in/mehedinas",
               href: "https://www.linkedin.com/in/mehedinas",
             },
             {
-              icon: "🐙",
+              icon: FaGithub,
               title: "GitHub",
               value: "github.com/mehedinassah",
               href: "https://github.com/mehedinassah",
             },
-          ].map((link, idx) => (
-            <motion.a
-              key={idx}
-              href={link.href}
-              target="_blank"
-              rel="noreferrer"
-              className="p-6 rounded-lg bg-accent-slate/5 border border-accent-blue/20 hover:border-accent-blue/50 transition-all group"
-              whileHover={{ scale: 1.05, borderColor: "rgb(59, 130, 246)" }}
-            >
-              <div className="text-3xl mb-2">{link.icon}</div>
-              <h4 className="text-white font-bold mb-1">{link.title}</h4>
-              <p className="text-accent-slate text-sm group-hover:text-accent-blue transition-colors truncate">
-                {link.value}
-              </p>
-            </motion.a>
-          ))}
+          ].map((link, idx) => {
+            const IconComponent = link.icon;
+            return (
+              <motion.a
+                key={idx}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="p-6 rounded-lg bg-accent-slate/5 border border-accent-blue/20 hover:border-accent-blue/50 transition-all group"
+                whileHover={{ scale: 1.05, borderColor: "rgb(59, 130, 246)" }}
+              >
+                <IconComponent className="text-4xl mb-3 text-accent-blue group-hover:text-white transition-colors" />
+                <h4 className="text-white font-bold mb-1">{link.title}</h4>
+                <p className="text-accent-slate text-sm group-hover:text-accent-blue transition-colors truncate">
+                  {link.value}
+                </p>
+              </motion.a>
+            );
+          })}
         </motion.div>
       </div>
     </section>
