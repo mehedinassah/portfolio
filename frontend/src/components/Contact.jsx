@@ -34,7 +34,7 @@ export default function Contact() {
 
   const contactMethods = [
     { emoji: "📧", label: "Email", value: "idehemnassah@gmail.com", href: "mailto:idehemnassah@gmail.com" },
-    { emoji: "💼", label: "LinkedIn", value: "mehedi-hassan-2b4689278", href: "https://linkedin.com/in/mehedi-hassan-2b4689278" },
+    { emoji: "💼", label: "LinkedIn", value: "mehedinas", href: "https://www.linkedin.com/in/mehedinas" },
     { emoji: "🐙", label: "GitHub", value: "mehedinassah", href: "https://github.com/mehedinassah" },
     { emoji: "📍", label: "Location", value: "Dhaka, Bangladesh", href: null },
   ];

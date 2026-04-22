@@ -32,10 +32,10 @@ const TerminalContact = () => {
       ],
     },
     email: {
-      output: ["📧 Email: mehedi.hassan.dev@gmail.com"],
+      output: ["📧 Email: idehemnassah@gmail.com"],
     },
     linkedin: {
-      output: ["💼 LinkedIn: linkedin.com/in/mehedi-hassan-dev"],
+      output: ["💼 LinkedIn: linkedin.com/in/mehedinas"],
     },
     github: {
       output: ["🐙 GitHub: github.com/mehedinassah"],
@@ -63,12 +63,11 @@ const TerminalContact = () => {
     } else if (trimmed === "connect") {
       setHistory((prev) => [
         ...prev,
-        { type: "system", text: "Opening contact form..." },
-        { type: "system", text: "📬 Redirecting to email" },
+        { type: "system", text: "Here are my contact details:" },
+        { type: "output", text: "📧 Email: idehemnassah@gmail.com" },
+        { type: "output", text: "💼 LinkedIn: linkedin.com/in/mehedinas" },
+        { type: "output", text: "🐙 GitHub: github.com/mehedinassah" },
       ]);
-      setTimeout(() => {
-        window.location.href = "mailto:mehedi.hassan.dev@gmail.com?subject=Let's%20Connect!";
-      }, 1000);
     } else if (commands[trimmed]) {
       setHistory((prev) => [
         ...prev,
@@ -209,14 +208,14 @@ const TerminalContact = () => {
             {
               icon: "📧",
               title: "Email",
-              value: "mehedi.hassan.dev@gmail.com",
-              href: "mailto:mehedi.hassan.dev@gmail.com",
+              value: "idehemnassah@gmail.com",
+              href: "mailto:idehemnassah@gmail.com",
             },
             {
               icon: "💼",
               title: "LinkedIn",
-              value: "linkedin.com/in/mehedi-hassan-dev",
-              href: "https://linkedin.com/in/mehedi-hassan-dev",
+              value: "linkedin.com/in/mehedinas",
+              href: "https://www.linkedin.com/in/mehedinas",
             },
             {
               icon: "🐙",

@@ -11,7 +11,7 @@ export default function Footer() {
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/mehedi-hassan-2b4689278",
+      url: "https://www.linkedin.com/in/mehedinas",
       emoji: "💼",
     },
     {
