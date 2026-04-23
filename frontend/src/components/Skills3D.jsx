@@ -88,7 +88,7 @@ export default function Skills3D() {
   };
 
   return (
-    <section id="skills" className="py-24 md:py-32 px-6 relative overflow-hidden">
+    <section id="skills" className="section-skills py-24 md:py-32 px-6 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <motion.div

@@ -158,7 +158,7 @@ export default function AboutCodeEditor() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section id="about" className="py-24 md:py-32 px-6 relative overflow-hidden">
+    <section id="about" className="section-about py-24 md:py-32 px-6 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <motion.div

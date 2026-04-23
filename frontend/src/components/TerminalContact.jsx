@@ -96,7 +96,7 @@ const TerminalContact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 px-6 relative overflow-hidden">
+    <section id="contact" className="section-contact py-24 md:py-32 px-6 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <motion.div

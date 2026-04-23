@@ -94,7 +94,7 @@ export default function ExperienceTimeline() {
   };
 
   return (
-    <section id="experience" className="py-24 md:py-32 px-6 relative overflow-hidden">
+    <section id="experience" className="section-experience py-24 md:py-32 px-6 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <motion.div

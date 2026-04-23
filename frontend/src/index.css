@@ -198,6 +198,154 @@ header, .sticky {
   animation: fillBar 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+/* ============================================ */
+/* SECTION COLOR DIFFERENTIATION SYSTEM       */
+/* ============================================ */
+
+/* Hero Section — Deep Navy with Blue Radial Mesh */
+.section-hero {
+  background: linear-gradient(135deg, #030712 0%, #0f1419 50%, #1a2847 100%);
+  border-top: 4px solid #3b82f6;
+  position: relative;
+}
+
+.section-hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* About Section — Dark Slate with Teal Left Glow */
+.section-about {
+  background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0d1c1a 100%);
+  border-top: 4px solid #14b8a6;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-20%, -20%);
+}
+
+/* Skills Section — Near-Black with Violet Top-Right Glow */
+.section-skills {
+  background: linear-gradient(135deg, #030712 0%, #0a0f1a 50%, #1a0f2e 100%);
+  border-top: 4px solid #a855f7;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-skills::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Projects Section — Darkest Navy with Blue Center Glow */
+.section-projects {
+  background: linear-gradient(135deg, #0a0e1a 0%, #0f1419 50%, #1a2847 100%);
+  border-top: 4px solid #3b82f6;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-projects::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Experience Section — Deep Teal-Tinted Black with Green Timeline Accents */
+.section-experience {
+  background: linear-gradient(135deg, #030a0a 0%, #0f1a1a 50%, #0a1a1f 100%);
+  border-top: 4px solid #10b981;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-experience::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 300px;
+  height: 600px;
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Contact Section — Warm Black with Amber Glow */
+.section-contact {
+  background: linear-gradient(135deg, #0f0a05 0%, #1a1410 50%, #2a1a0a 100%);
+  border-top: 4px solid #f59e0b;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-contact::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(20%, 20%);
+}
+
+/* Timeline accent for Experience section */
+.timeline-accent {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+}
+
+/* Ensure section content sits above pseudo-element glows */
+.section-hero > *,
+.section-about > *,
+.section-skills > *,
+.section-projects > *,
+.section-experience > *,
+.section-contact > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* Typing cursor */
 .typing-cursor::after {
   content: '|';

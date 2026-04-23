@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import HeroAdvanced from "./components/HeroCanvas";
 import AboutCodeEditor from "./components/AboutCodeEditor";
 import Skills3D from "./components/Skills3D";
-import Projects3D from "./components/Projects3D";
+import Projects3DArc from "./components/Projects3DArc";
 import ExperienceTimeline from "./components/ExperienceTimeline";
 import TerminalContact from "./components/TerminalContact";
 import Footer from "./components/Footer";
@@ -16,7 +16,7 @@ export default function App() {
         <HeroAdvanced />
         <AboutCodeEditor />
         <Skills3D />
-        <Projects3D />
+        <Projects3DArc />
         <ExperienceTimeline />
         <TerminalContact />
       </main>
