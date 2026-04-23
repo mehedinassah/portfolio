@@ -40,13 +40,13 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 pt-4 px-6">
-      <div className="max-w-6xl mx-auto glass rounded-xl py-4 px-6">
+    <nav className="fixed top-0 left-0 right-0 z-50 pt-3 md:pt-4 px-3 md:px-6">
+      <div className="max-w-6xl mx-auto glass rounded-xl py-3 md:py-4 px-4 md:px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <button
             onClick={() => handleNav("#home")}
-            className="font-display font-700 text-lg tracking-tight hover:text-accent-blue transition-colors"
+            className="font-display font-700 text-base md:text-lg tracking-tight hover:text-accent-blue transition-colors"
           >
             <span className="gradient-text">MH</span>
             <span className="text-accent-slate ml-1 text-xs font-mono">.dev</span>
@@ -81,7 +81,7 @@ export default function Navbar() {
               GitHub ↗
             </a>
             <button
-              className="md:hidden p-2 rounded-lg glass text-white/70 hover:text-white transition-colors"
+              className="md:hidden p-2.5 rounded-lg glass text-white/70 hover:text-white transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
             >
@@ -92,12 +92,12 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden mt-2 pt-2 border-t border-white/10 flex flex-col gap-1">
+          <div className="md:hidden mt-2 pt-2 border-t border-white/10 flex flex-col gap-1 max-h-[70vh] overflow-y-auto">
             {navLinks.map((link) => (
               <button
                 key={link.label}
                 onClick={() => handleNav(link.href)}
-                className={`text-left px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                className={`text-left px-3 py-3 rounded-lg text-sm font-medium transition-all ${
                   activeSection === link.href.slice(1)
                     ? "text-accent-blue bg-accent-blue/10"
                     : "text-white/60 hover:text-white hover:bg-white/5"

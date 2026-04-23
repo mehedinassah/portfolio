@@ -5,6 +5,9 @@ import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 const TerminalContact = () => {
   const [input, setInput] = useState("");
   const [hoveredIcon, setHoveredIcon] = useState(null);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
   const [history, setHistory] = useState([
     { type: "system", text: "$ contact --me" },
     { type: "system", text: "Welcome to Mehedi Hassan's contact terminal 🚀" },
@@ -18,6 +21,12 @@ const TerminalContact = () => {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
   }, [history]);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   const commands = {
     help: {
@@ -96,7 +105,7 @@ const TerminalContact = () => {
   };
 
   return (
-    <section id="contact" className="section-contact py-24 md:py-32 px-6 relative overflow-hidden">
+    <section id="contact" className="section-contact py-16 md:py-32 px-4 md:px-6 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <motion.div
@@ -118,10 +127,10 @@ const TerminalContact = () => {
           <p className="font-mono text-xs text-accent-blue uppercase tracking-widest mb-4">
             Get in Touch
           </p>
-          <h2 className="font-display font-900 text-5xl md:text-6xl text-white mb-4">
+          <h2 className="font-display font-900 text-3xl sm:text-4xl md:text-6xl text-white mb-4 leading-tight">
             Let's Connect
           </h2>
-          <p className="text-lg text-accent-slate">
+          <p className="text-sm sm:text-base md:text-lg text-accent-slate">
             Open to opportunities, collaborations, and conversations. Hit me up!
           </p>
         </motion.div>
@@ -147,7 +156,7 @@ const TerminalContact = () => {
           {/* Terminal Content */}
           <div
             ref={terminalRef}
-            className="p-6 h-96 overflow-y-auto font-mono text-sm bg-gradient-to-b from-transparent to-accent-blue/5 space-y-2"
+            className="p-4 md:p-6 h-72 sm:h-80 md:h-96 overflow-y-auto font-mono text-xs sm:text-sm bg-gradient-to-b from-transparent to-accent-blue/5 space-y-2"
           >
             {history.map((line, idx) => (
               <motion.div
@@ -185,15 +194,15 @@ const TerminalContact = () => {
           </div>
 
           {/* Terminal Input */}
-          <form onSubmit={handleSubmit} className="border-t border-accent-blue/20 p-4 flex gap-2">
+          <form onSubmit={handleSubmit} className="border-t border-accent-blue/20 p-3 md:p-4 flex gap-2">
             <span className="text-accent-blue font-mono">$</span>
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type 'help' to see commands..."
-              className="flex-1 bg-transparent text-white font-mono outline-none placeholder-accent-slate/50"
-              autoFocus
+              className="flex-1 bg-transparent text-white font-mono text-sm md:text-base outline-none placeholder-accent-slate/50"
+              autoFocus={!isMobile}
             />
           </form>
         </motion.div>
@@ -234,16 +243,16 @@ const TerminalContact = () => {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="p-6 rounded-lg bg-accent-slate/5 border border-accent-blue/20 hover:border-accent-blue/50 transition-all group"
+                className="p-4 md:p-6 rounded-lg bg-accent-slate/5 border border-accent-blue/20 hover:border-accent-blue/50 transition-all group"
                 whileHover={{ scale: 1.05, borderColor: "rgb(59, 130, 246)" }}
                 onMouseEnter={() => setHoveredIcon(idx)}
                 onMouseLeave={() => setHoveredIcon(null)}
               >
                 <div className="mb-4 flex justify-center">
-                  <IconComponent style={{ fontSize: "52px", color: isHovered ? "#ffffff" : "#3b82f6", transition: "color 0.3s ease" }} />
+                  <IconComponent style={{ fontSize: "40px", color: isHovered ? "#ffffff" : "#3b82f6", transition: "color 0.3s ease" }} />
                 </div>
-                <h4 className="text-white font-bold mb-1">{link.title}</h4>
-                <p className="text-accent-slate text-sm group-hover:text-accent-blue transition-colors truncate">
+                <h4 className="text-white font-bold text-sm md:text-base mb-1">{link.title}</h4>
+                <p className="text-accent-slate text-xs md:text-sm group-hover:text-accent-blue transition-colors truncate">
                   {link.value}
                 </p>
               </motion.a>

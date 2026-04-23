@@ -199,9 +199,10 @@ export default function StackedCardCarousel({ projects }) {
   const visibleCards = useMemo(() => {
     if (!projectCount) return [];
 
-    const offsetXMultiplier = compact ? 0.68 : 1;
+    const offsetXMultiplier = compact ? 0.62 : 1;
+    const activePositions = compact ? [-1, 0, 1] : POSITIONS;
 
-    return POSITIONS.map((position) => {
+    return activePositions.map((position) => {
       const projectIndex = wrapIndex(centerIndex + position, projectCount);
       const layer = DEPTH[String(position)];
       return {
@@ -220,7 +221,7 @@ export default function StackedCardCarousel({ projects }) {
   return (
     <div className="relative mx-auto max-w-6xl">
       <div
-        className="relative h-[500px] md:h-[560px] overflow-hidden"
+        className="relative h-[430px] sm:h-[480px] md:h-[560px] overflow-hidden"
         onMouseLeave={() => setHoverZone(null)}
       >
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -267,11 +268,11 @@ export default function StackedCardCarousel({ projects }) {
         ))}
       </div>
 
-      <div className="mt-8 flex items-center justify-center gap-3">
+      <div className="mt-6 md:mt-8 flex items-center justify-center gap-2 md:gap-3 px-1">
         <button
           type="button"
           onClick={shiftLeft}
-          className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-slate-200 transition hover:bg-white/10"
+          className="rounded-full border border-white/15 bg-white/5 px-3 md:px-4 py-2.5 text-xs md:text-sm text-slate-200 transition hover:bg-white/10"
           aria-label="Show previous project"
         >
           Prev
@@ -283,7 +284,7 @@ export default function StackedCardCarousel({ projects }) {
               type="button"
               onClick={() => setCenterIndex(index)}
               className={`h-2.5 rounded-full transition-all ${
-                index === centerIndex ? "w-8 bg-cyan-300" : "w-2.5 bg-white/25 hover:bg-white/45"
+                index === centerIndex ? "w-6 md:w-8 bg-cyan-300" : "w-2.5 bg-white/25 hover:bg-white/45"
               }`}
               aria-label={`Go to ${project.title}`}
             />
@@ -292,7 +293,7 @@ export default function StackedCardCarousel({ projects }) {
         <button
           type="button"
           onClick={shiftRight}
-          className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-slate-200 transition hover:bg-white/10"
+          className="rounded-full border border-white/15 bg-white/5 px-3 md:px-4 py-2.5 text-xs md:text-sm text-slate-200 transition hover:bg-white/10"
           aria-label="Show next project"
         >
           Next
