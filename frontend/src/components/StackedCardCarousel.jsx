@@ -21,22 +21,22 @@ const DEPTH = {
 const CARD_THEMES = [
   {
     gradient: "linear-gradient(135deg, #0f172a, #1e3a8a)",
-    glow: "0 20px 60px rgba(59, 130, 246, 0.15)",
+    glowColor: "59, 130, 246",
     accentBorder: "rgba(96, 165, 250, 0.35)",
   },
   {
     gradient: "linear-gradient(135deg, #1a102a, #5b21b6)",
-    glow: "0 20px 60px rgba(139, 92, 246, 0.15)",
+    glowColor: "139, 92, 246",
     accentBorder: "rgba(167, 139, 250, 0.35)",
   },
   {
     gradient: "linear-gradient(135deg, #0f2a2a, #0d9488)",
-    glow: "0 20px 60px rgba(20, 184, 166, 0.15)",
+    glowColor: "20, 184, 166",
     accentBorder: "rgba(45, 212, 191, 0.35)",
   },
   {
     gradient: "linear-gradient(135deg, #0b132b, #1e40af)",
-    glow: "0 20px 60px rgba(59, 130, 246, 0.14)",
+    glowColor: "59, 130, 246",
     accentBorder: "rgba(129, 140, 248, 0.32)",
   },
 ];
@@ -44,6 +44,12 @@ const CARD_THEMES = [
 function getTheme(projectId) {
   const idValue = Number(projectId) || String(projectId).length;
   return CARD_THEMES[Math.abs(idValue) % CARD_THEMES.length];
+}
+
+function getGlowAlpha(position) {
+  if (position === 0) return 0.15;
+  if (Math.abs(position) === 1) return 0.1;
+  return 0.06;
 }
 
 function wrapIndex(index, length) {
@@ -58,6 +64,7 @@ const StackedCard = memo(function StackedCard({
   compact,
 }) {
   const theme = getTheme(project.id);
+  const glowAlpha = getGlowAlpha(position);
 
   return (
     <motion.article
@@ -85,7 +92,7 @@ const StackedCard = memo(function StackedCard({
         style={{
           borderColor: theme.accentBorder,
           backgroundImage: theme.gradient,
-          boxShadow: `${layer.shadow}, ${theme.glow}`,
+          boxShadow: `${layer.shadow}, 0 20px 60px rgba(${theme.glowColor}, ${glowAlpha})`,
           backdropFilter: "blur(20px)",
         }}
         transition={SPRING}
