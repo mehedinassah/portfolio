@@ -1,162 +1,177 @@
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 const techStack = [
-  { name: "Java", color: "#f89820" },
-  { name: "Kotlin", color: "#7F52FF" },
-  { name: "Spring Boot", color: "#6DB33F" },
-  { name: "React", color: "#61DAFB" },
-  { name: "Next.js", color: "#ffffff" },
-  { name: "Android", color: "#3DDC84" },
-  { name: "Firebase", color: "#FFCA28" },
-  { name: "Python", color: "#3776AB" },
-  { name: "Git", color: "#F05032" },
-  { name: "REST API", color: "#00d4ff" },
-  { name: "Tailwind CSS", color: "#38BDF8" },
-  { name: "MVVM", color: "#8b5cf6" },
+  { name: "Java", category: "Backend" },
+  { name: "Kotlin", category: "Mobile" },
+  { name: "Spring Boot", category: "Backend" },
+  { name: "React", category: "Frontend" },
+  { name: "Next.js", category: "Frontend" },
+  { name: "Android", category: "Mobile" },
+  { name: "Firebase", category: "Backend" },
+  { name: "Python", category: "AI/ML" },
+  { name: "TailwindCSS", category: "Frontend" },
 ];
 
 export default function About() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("section-visible");
-        });
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
 
   return (
-    <section id="about" className="py-28 px-6 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#8b5cf6]/5 rounded-full blur-[120px] pointer-events-none" />
-
-      <div ref={ref} className="max-w-6xl mx-auto section-hidden">
-        {/* Section header */}
-        <div className="mb-16">
-          <p className="font-mono text-[#00d4ff] text-sm tracking-widest uppercase mb-3"></p>
-          <h2 className="font-display font-extrabold text-4xl md:text-5xl text-white">
+    <section id="about" className="py-24 md:py-32 px-6 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          className="mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={itemVariants}
+        >
+          <p className="font-mono text-xs text-accent-blue uppercase tracking-widest mb-3">
+            About Me
+          </p>
+          <h2 className="font-display font-700 text-4xl md:text-5xl text-white">
             Who I Am
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Bio */}
-          <div className="space-y-6">
-            {/* Avatar placeholder */}
+          {/* Bio Section */}
+          <motion.div
+            className="space-y-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
             {/* Profile Image */}
-            <div className="relative w-48 h-48 md:w-64 md:h-64 mb-8">
-              <div className="w-full h-full rounded-2xl overflow-hidden border border-[#00d4ff]/20 shadow-2xl shadow-[#00d4ff]/10">
+            <motion.div className="relative w-48 h-48 md:w-64 md:h-64" variants={itemVariants}>
+              <div className="w-full h-full rounded-lg overflow-hidden border border-accent-slate/20 shadow-lg">
                 <img
                   src="https://raw.githubusercontent.com/mehedinassah/portfolio/main/frontend/public/mehedi.jpg"
                   alt="Mehedi Hassan"
                   className="w-full h-full object-cover object-top"
                 />
               </div>
-              {/* Glow border */}
-              <div className="absolute inset-0 rounded-2xl border border-[#00d4ff]/10 animate-pulse" />
-              {/* Online dot */}
-              <div className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-[#030712]/80 px-2.5 py-1 rounded-full border border-[#10b981]/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
-                <span className="text-[#10b981] text-xs font-mono">Available</span>
-              </div>
-            </div>
+              {/* Available Badge */}
+              <motion.div
+                className="absolute bottom-4 right-4 flex items-center gap-2 bg-bg-primary/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-emerald-500/20"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-emerald-500/80 text-xs font-mono">Available</span>
+              </motion.div>
+            </motion.div>
 
-            <p className="text-white/70 text-lg leading-relaxed font-body">
-              Hi, I'm <span className="text-white font-semibold">Mehedi Hassan</span>, a
-              CS undergrad developer passionate about building{" "}
-              <span className="text-[#00d4ff]">simple, scalable, and useful</span>{" "}
-              software.
-            </p>
-            <p className="text-white/60 leading-relaxed font-body">
-              I create <span className="text-[#3DDC84] font-medium">Android apps</span>,{" "}
-              <span className="text-[#61DAFB] font-medium">
-                full-stack web applications
-              </span>{" "}
-              and explore{" "}
-              <span className="text-[#8b5cf6] font-medium">AI-powered products</span>.
-            </p>
-            <p className="text-white/60 leading-relaxed font-body">
-              I'm looking for opportunities to build{" "}
-              <span className="text-white/80 font-medium">
-                impactful software used globally
-              </span>
-              .
-            </p>
+            {/* About Text */}
+            <motion.p
+              className="text-white/70 text-lg leading-relaxed"
+              variants={itemVariants}
+            >
+              Hi! I'm <span className="text-white font-600">Mehedi Hassan</span>, a Computer
+              Science student passionate about building{" "}
+              <span className="text-accent-blue font-500">scalable, user-centric software</span>.
+            </motion.p>
 
-            {/* Quick facts */}
-            <div className="grid grid-cols-2 gap-4 mt-8">
+            <motion.p className="text-accent-slate leading-relaxed" variants={itemVariants}>
+              I specialize in <span className="text-white font-500">Android development</span>,
+              {" "}
+              <span className="text-white font-500">full-stack web applications</span>, and
+              integrating <span className="text-white font-500">AI/ML technologies</span> into
+              products.
+            </motion.p>
+
+            <motion.p className="text-accent-slate leading-relaxed" variants={itemVariants}>
+              My goal is to create <span className="text-white font-500">impactful solutions</span>
+              {" "}
+              that solve real problems and scale globally. I'm currently looking for opportunities
+              to collaborate on exciting projects.
+            </motion.p>
+
+            {/* Quick Facts */}
+            <motion.div className="grid grid-cols-2 gap-4 pt-6" variants={itemVariants}>
               {[
-                { label: "Location", value: "Dhaka, Bangladesh 🇧🇩", icon: "📍" },
-                { label: "Focus", value: "Remote & On-site", icon: "🌍" },
-                { label: "Speciality", value: "Android + Web", icon: "💻" },
-                { label: "Status", value: "Available Now", icon: "🟢" },
+                { label: "Location", value: "Dhaka, Bangladesh" },
+                { label: "Focus", value: "Remote & On-site" },
+                { label: "Expertise", value: "Android + Web + AI" },
+                { label: "Status", value: "Available Now" },
               ].map((item) => (
-                <div
-                  key={item.label}
-                  className="gradient-border p-4 rounded-xl hover:bg-white/2 transition-colors"
-                >
-                  <div className="text-xl mb-1">{item.icon}</div>
-                  <div className="text-white/40 text-xs font-mono uppercase tracking-wider mb-0.5">
+                <div key={item.label} className="card p-4">
+                  <p className="text-accent-slate text-xs font-mono uppercase tracking-wide mb-1">
                     {item.label}
-                  </div>
-                  <div className="text-white/80 text-sm font-medium">{item.value}</div>
+                  </p>
+                  <p className="text-white font-500 text-sm">{item.value}</p>
                 </div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Right: Tech Stack Grid */}
-          <div>
-            <p className="text-white/40 text-sm font-mono uppercase tracking-widest mb-6">
-              Tech Stack
-            </p>
-            <div className="grid grid-cols-3 gap-3">
-              {techStack.map((tech) => (
-                <div
-                  key={tech.name}
-                  className="group gradient-border p-3 rounded-xl hover:scale-105 transition-all duration-200 cursor-default"
-                  style={{ "--hover-color": tech.color }}
-                >
-                  <div
-                    className="w-2 h-2 rounded-full mb-2 transition-all duration-200"
-                    style={{ backgroundColor: tech.color, opacity: 0.7 }}
-                  />
-                  <div className="text-white/70 text-sm font-medium group-hover:text-white transition-colors">
-                    {tech.name}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* What I build */}
-            <div className="mt-8 p-5 rounded-xl bg-[#0d1424] border border-white/5">
-              <p className="text-white/40 text-xs font-mono uppercase tracking-wider mb-4">
-                What I Build
+          {/* Tech Stack */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.div className="mb-8" variants={itemVariants}>
+              <p className="font-mono text-xs text-accent-blue uppercase tracking-widest mb-6">
+                Tech Stack
               </p>
-              <div className="space-y-3">
-                {[
-                  { icon: "📱", title: "Android Apps" },
-                  { icon: "🌐", title: "Web Apps" },
-                  { icon: "🤖", title: "AI Tools" },
-                ].map((item) => (
-                  <div key={item.title} className="flex items-center gap-3">
-                    <span className="text-xl">{item.icon}</span>
-                    <div>
-                      <div className="text-white/80 text-sm font-medium">
-                        {item.title}
-                      </div>
-                      <div className="text-white/40 text-xs">{item.desc}</div>
-                    </div>
-                  </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {techStack.map((tech, idx) => (
+                  <motion.div
+                    key={tech.name}
+                    className="card p-4 text-center group hover:bg-accent-slate/5 transition-colors"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -4 }}
+                  >
+                    <h4 className="text-white font-600 text-sm">{tech.name}</h4>
+                    <p className="text-accent-slate text-xs mt-1.5 font-mono">{tech.category}</p>
+                  </motion.div>
                 ))}
               </div>
-            </div>
-          </div>
+            </motion.div>
+
+            {/* Highlights */}
+            <motion.div className="card p-6" variants={itemVariants}>
+              <p className="text-accent-slate text-xs font-mono uppercase tracking-widest mb-4">
+                What Drives Me
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Building products that users love",
+                  "Clean, maintainable code practices",
+                  "Continuous learning and growth",
+                  "Contributing to open source",
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-center gap-3 text-accent-slate text-sm">
+                    <span className="w-1 h-1 rounded-full bg-accent-blue flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

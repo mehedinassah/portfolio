@@ -1,142 +1,180 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { motion } from "framer-motion";
+
 import { experience, education } from "../data/staticData";
+
+function TimelineCard({ item, isExperience, index }) {
+  const containerVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.6,
+        delay: index * 0.1,
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      className="relative"
+    >
+      {/* Timeline dot */}
+      <div className="absolute -left-12 top-2 w-4 h-4 bg-accent-blue rounded-full border-2 border-bg-primary" />
+      {/* Timeline line */}
+      <div className="absolute -left-8 top-8 bottom-0 w-0.5 bg-gradient-to-b from-accent-blue/30 to-transparent" />
+
+      <div className="card p-6 md:p-8">
+        {/* Header */}
+        <div className="flex items-start justify-between mb-4 gap-4">
+          <div className="flex-1">
+            <h3 className="font-display font-600 text-white text-lg group-hover:text-accent-blue transition-colors">
+              {item.role || item.degree}
+            </h3>
+            <div className="flex items-center gap-2 mt-2 flex-wrap">
+              <span className="text-accent-blue text-sm font-500">
+                {item.company || item.institution}
+              </span>
+              {(item.location) && (
+                <>
+                  <span className="text-white/20">•</span>
+                  <span className="text-accent-slate text-xs font-mono">
+                    {item.location}
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
+          <span className="text-xs font-mono text-accent-slate px-3 py-1.5 rounded-md bg-accent-slate/10 border border-accent-slate/20 whitespace-nowrap">
+            {item.period}
+          </span>
+        </div>
+
+        {/* Description or Bullet Points */}
+        {item.description && typeof item.description === "string" ? (
+          <p className="text-accent-slate text-sm leading-relaxed mt-4">{item.description}</p>
+        ) : (
+          <ul className="space-y-2 mt-4">
+            {item.description?.map((point, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm text-accent-slate">
+                <span className="text-accent-blue mt-0.5 shrink-0 font-bold">→</span>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Experience() {
   const ref = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("section-visible");
-        }),
-      { threshold: 0.05 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const headerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
 
   return (
-    <section id="experience" className="py-28 px-6 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-80 h-80 bg-[#10b981]/5 rounded-full blur-[100px] pointer-events-none" />
-
-      <div ref={ref} className="max-w-6xl mx-auto section-hidden">
+    <section id="experience" className="py-24 md:py-32 px-6 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-16">
-          <p className="font-mono text-[#00d4ff] text-sm tracking-widest uppercase mb-3"></p>
-          <h2 className="font-display font-extrabold text-4xl md:text-5xl text-white">
-            My Journey
+        <motion.div
+          ref={ref}
+          className="mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={headerVariants}
+        >
+          <p className="font-mono text-xs text-accent-blue uppercase tracking-widest mb-3">
+            Journey & Timeline
+          </p>
+          <h2 className="font-display font-700 text-4xl md:text-5xl text-white mb-4">
+            Experience & Education
           </h2>
-        </div>
+          <p className="text-accent-slate max-w-xl">
+            A timeline of professional growth, learning, and achievements that shaped my engineering
+            career.
+          </p>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Experience */}
+        {/* Two Column Layout */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Experience Column */}
           <div>
-            <h3 className="font-display font-bold text-white/80 text-lg mb-6 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-md bg-[#00d4ff]/20 flex items-center justify-center text-xs text-[#00d4ff]">
-                💼
-              </span>
-              Experience
-            </h3>
+            <motion.div
+              className="flex items-center gap-3 mb-8"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <span className="text-xl">💼</span>
+              <h3 className="font-display font-600 text-white text-xl">Professional</h3>
+            </motion.div>
 
-            <div className="space-y-6">
+            <div className="space-y-8 pl-6 relative">
               {experience.map((exp, i) => (
-                <div
-                  key={i}
-                  className="gradient-border p-6 rounded-2xl hover:bg-white/1 transition-colors"
-                >
-                  {/* Header */}
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h4 className="font-display font-bold text-white text-lg">
-                        {exp.role}
-                      </h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[#00d4ff] text-sm font-medium">
-                          {exp.company}
-                        </span>
-                        <span className="text-white/20 text-xs">•</span>
-                        <span className="text-white/40 text-xs font-mono">
-                          {exp.location}
-                        </span>
-                      </div>
-                    </div>
-                    <span className="text-xs font-mono text-white/30 bg-white/5 px-3 py-1 rounded-full whitespace-nowrap">
-                      {exp.period}
-                    </span>
-                  </div>
-
-                  {/* Bullet points */}
-                  <ul className="space-y-2 mt-4">
-                    {exp.description.map((item, j) => (
-                      <li
-                        key={j}
-                        className="flex items-start gap-2.5 text-sm text-white/50"
-                      >
-                        <span className="text-[#00d4ff] mt-0.5 shrink-0">▸</span>
-                        <span className="leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <TimelineCard key={i} item={exp} isExperience index={i} />
               ))}
             </div>
 
-            {/* Open for work banner */}
-            <div className="mt-6 p-4 rounded-xl border border-[#10b981]/20 bg-[#10b981]/5 flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse shrink-0" />
-              <p className="text-[#10b981]/80 text-sm">
-                <span className="font-semibold">Open to work</span> — actively seeking
-                opportunities.
+            {/* Open to Work Badge */}
+            <motion.div
+              className="mt-8 p-4 card border-accent-blue/30 bg-accent-blue/5 flex items-center gap-3"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <p className="text-accent-blue text-sm">
+                <span className="font-600">Available for full-time roles</span> — Let's build
+                something great!
               </p>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Education */}
+          {/* Education Column */}
           <div>
-            <h3 className="font-display font-bold text-white/80 text-lg mb-6 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-md bg-[#8b5cf6]/20 flex items-center justify-center text-xs">
-                🎓
-              </span>
-              Education
-            </h3>
+            <motion.div
+              className="flex items-center gap-3 mb-8"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <span className="text-xl">🏆</span>
+              <h3 className="font-display font-600 text-white text-xl">Academic</h3>
+            </motion.div>
 
-            <div className="space-y-6">
+            <div className="space-y-8 pl-6 relative">
               {education.map((edu, i) => (
-                <div
-                  key={i}
-                  className="gradient-border p-6 rounded-2xl hover:bg-white/1 transition-colors"
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h4 className="font-display font-bold text-white text-base leading-snug">
-                        {edu.degree}
-                      </h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[#8b5cf6] text-sm font-medium">
-                          {edu.institution}
-                        </span>
-                        <span className="text-white/20 text-xs">•</span>
-                        <span className="text-white/40 text-xs font-mono">
-                          {edu.location}
-                        </span>
-                      </div>
-                    </div>
-                    <span className="text-xs font-mono text-white/30 bg-white/5 px-3 py-1 rounded-full whitespace-nowrap">
-                      {edu.period}
-                    </span>
-                  </div>
-                  <p className="text-sm text-white/50 leading-relaxed mt-4">
-                    {edu.description}
-                  </p>
-                </div>
+                <TimelineCard key={i} item={edu} isExperience={false} index={i} />
               ))}
             </div>
 
-            {/* Skills highlight */}
-            <div className="mt-6 p-5 rounded-xl bg-[#0d1424] border border-white/5">
-              <p className="text-white/40 text-xs font-mono uppercase tracking-wider mb-4">
-                Continuously Learning
+            {/* Continuous Learning */}
+            <motion.div
+              className="mt-8 p-6 card"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-accent-slate text-xs font-mono uppercase tracking-wider mb-4">
+                Continuous Learning
               </p>
               <div className="flex flex-wrap gap-2">
                 {[
@@ -149,13 +187,13 @@ export default function Experience() {
                 ].map((item) => (
                   <span
                     key={item}
-                    className="text-xs px-3 py-1.5 rounded-lg bg-white/5 text-white/50 border border-white/5 font-mono"
+                    className="text-xs px-3 py-1.5 rounded-md bg-accent-slate/5 text-accent-slate border border-accent-slate/10 font-mono"
                   >
                     {item}
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
