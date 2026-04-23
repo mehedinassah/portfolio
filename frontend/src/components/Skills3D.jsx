@@ -19,41 +19,83 @@ function SkillsCube({ skills, category }) {
   }, []);
 
   return (
-    <motion.div
-      ref={cubeRef}
-      className="w-40 h-40 relative"
+    <div
       style={{
-        transformStyle: "preserve-3d",
-        transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+        perspective: "1500px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
       }}
-      animate={{ rotateX: rotation.x, rotateY: rotation.y }}
-      transition={{ type: "linear", duration: 0 }}
     >
-      {/* Cube faces */}
-      {[...Array(6)].map((_, i) => (
-        <div
-          key={i}
-          className="absolute w-40 h-40 bg-gradient-to-br from-accent-blue/30 to-accent-slate/10 border border-accent-blue/50 flex items-center justify-center backdrop-blur-sm"
-          style={{
-            transform: [
-              "rotateY(0deg) translateZ(80px)",
-              "rotateY(180deg) translateZ(80px)",
-              "rotateY(90deg) translateZ(80px)",
-              "rotateY(-90deg) translateZ(80px)",
-              "rotateX(90deg) translateZ(80px)",
-              "rotateX(-90deg) translateZ(80px)",
-            ][i],
-          }}
-        >
-          <div className="text-center">
-            <p className="text-accent-blue font-mono text-xs uppercase mb-2">
-              {["Front", "Back", "Right", "Left", "Top", "Bottom"][i]}
-            </p>
-            <p className="text-white font-bold">{skills[i % skills.length]?.name}</p>
+      <motion.div
+        ref={cubeRef}
+        style={{
+          width: "300px",
+          height: "300px",
+          position: "relative",
+          transformStyle: "preserve-3d",
+          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+          transformOrigin: "center center",
+        }}
+        animate={{ rotateX: rotation.x, rotateY: rotation.y }}
+        transition={{ type: "linear", duration: 0 }}
+      >
+        {/* Cube faces - all exactly 300x300 */}
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              width: "300px",
+              height: "300px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              border: "2px solid rgba(59, 130, 246, 0.6)",
+              backgroundColor: "rgba(59, 130, 246, 0.1)",
+              backdropFilter: "blur(10px)",
+              transformOrigin: "center center",
+              transform: [
+                "rotateY(0deg) translateZ(150px)",
+                "rotateY(180deg) translateZ(150px)",
+                "rotateY(90deg) translateZ(150px)",
+                "rotateY(-90deg) translateZ(150px)",
+                "rotateX(90deg) translateZ(150px)",
+                "rotateX(-90deg) translateZ(150px)",
+              ][i],
+            }}
+          >
+            <div style={{ textAlign: "center" }}>
+              <p
+                style={{
+                  color: "rgb(59, 130, 246)",
+                  fontFamily: "monospace",
+                  fontSize: "12px",
+                  textTransform: "uppercase",
+                  marginBottom: "16px",
+                  letterSpacing: "2px",
+                  margin: 0,
+                }}
+              >
+                {["Front", "Back", "Right", "Left", "Top", "Bottom"][i]}
+              </p>
+              <p
+                style={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: "24px",
+                  margin: 0,
+                }}
+              >
+                {skills[i % skills.length]?.name}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
-    </motion.div>
+        ))}
+      </motion.div>
+    </div>
   );
 }
 
@@ -145,7 +187,7 @@ export default function Skills3D() {
 
         {/* 3D Cube Display */}
         <motion.div
-          className="flex justify-center mb-16 min-h-80"
+          className="flex justify-center items-center min-h-screen"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
@@ -155,84 +197,6 @@ export default function Skills3D() {
             skills={selectedSkills}
             category={categories[activeCategory][0]}
           />
-        </motion.div>
-
-        {/* Skills Grid with Animations */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          {selectedSkills.slice(0, 6).map((skill, idx) => (
-            <motion.div
-              key={skill.name}
-              className="group p-5 rounded-xl bg-accent-slate/5 border border-accent-blue/20 hover:border-accent-blue/50 transition-all backdrop-blur-sm cursor-pointer"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 0 20px rgba(59, 130, 246, 0.2)",
-              }}
-              variants={itemVariants}
-            >
-              <div className="flex justify-between items-start mb-3">
-                <h4 className="font-bold text-white group-hover:text-accent-blue transition-colors">
-                  {skill.name}
-                </h4>
-                <span className="text-xs px-2 py-1 rounded bg-accent-blue/30 text-accent-slate-light font-mono">
-                  {skill.proficiency}%
-                </span>
-              </div>
-              <p className="text-xs text-accent-slate mb-4">{skill.category}</p>
-
-              {/* Animated Progress Bar */}
-              <div className="w-full h-2 rounded-full bg-accent-slate/10 overflow-hidden">
-                <motion.div
-                  className="h-full bg-gradient-to-r from-accent-blue to-blue-600 rounded-full"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.proficiency}%` }}
-                  transition={{ delay: idx * 0.1, duration: 1 }}
-                  viewport={{ once: true }}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Expertise Badges */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          {[
-            { emoji: "🚀", title: "Full-Stack", desc: "React, Node, Databases" },
-            { emoji: "📱", title: "Mobile", desc: "Android, Kotlin, Flutter" },
-            { emoji: "🤖", title: "AI/ML", desc: "Python, TensorFlow, APIs" },
-            { emoji: "☁️", title: "Cloud & DevOps", desc: "AWS, MongoDB, Firebase" },
-          ].map((exp, idx) => (
-            <motion.div
-              key={exp.title}
-              className="p-6 rounded-xl bg-gradient-to-br from-accent-blue/10 to-accent-slate/5 border border-accent-blue/30 backdrop-blur-sm"
-              variants={itemVariants}
-              whileHover={{
-                scale: 1.08,
-                boxShadow: "0 0 20px rgba(59, 130, 246, 0.3)",
-              }}
-            >
-              <motion.div
-                className="text-4xl mb-3"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: idx * 0.2 }}
-              >
-                {exp.emoji}
-              </motion.div>
-              <h4 className="font-bold text-white mb-2">{exp.title}</h4>
-              <p className="text-xs text-accent-slate">{exp.desc}</p>
-            </motion.div>
-          ))}
         </motion.div>
       </div>
     </section>

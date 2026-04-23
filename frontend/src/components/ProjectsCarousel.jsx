@@ -5,7 +5,7 @@ export default function ProjectsCarousel() {
   const projects = staticProjects;
 
   return (
-    <section className="section-projects py-20 px-6 relative">
+    <section id="projects" className="section-projects py-20 px-6 relative">
       {/* Header */}
       <div className="max-w-6xl mx-auto mb-12">
         <div className="inline-block px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-lg mb-4">
