@@ -64,7 +64,7 @@ export default function About() {
             <motion.div className="relative w-48 h-48 md:w-64 md:h-64" variants={itemVariants}>
               <div className="w-full h-full rounded-lg overflow-hidden border border-accent-slate/20 shadow-lg">
                 <img
-                  src="https://raw.githubusercontent.com/mehedinassah/portfolio/main/frontend/public/mehedi.jpg"
+                  src="/me.png"
                   alt="Mehedi Hassan"
                   className="w-full h-full object-cover object-top"
                 />

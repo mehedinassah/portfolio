@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "home", href: "#hero" },
+  { label: "about", href: "#about" },
+  { label: "skills", href: "#skills" },
+  { label: "projects", href: "#projects" },
+  { label: "contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -40,29 +39,40 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 pt-3 md:pt-4 px-3 md:px-6">
-      <div className="max-w-6xl mx-auto glass rounded-xl py-3 md:py-4 px-4 md:px-6">
-        <div className="flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-3"
+      style={{
+        background: "rgba(17,24,39,0.75)",
+        backdropFilter: "blur(10px)",
+        borderBottom: "0.5px solid rgba(251,113,133,0.15)",
+      }}
+    >
+      <div className="max-w-6xl mx-auto">
+        <div className="relative flex items-center justify-between">
           {/* Logo */}
           <button
-            onClick={() => handleNav("#home")}
-            className="font-display font-700 text-base md:text-lg tracking-tight hover:text-accent-blue transition-colors"
+            onClick={() => handleNav("#hero")}
+            className="tracking-tight"
+            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "15px" }}
           >
-            <span className="gradient-text">MH</span>
-            <span className="text-accent-slate ml-1 text-xs font-mono">.dev</span>
+            <span style={{ color: "#fb7185" }}>MH</span>
+            <span style={{ color: "#fb7185", opacity: 0.5 }}>.dev</span>
           </button>
 
           {/* Desktop Nav */}
-          <ul className="hidden md:flex items-center gap-0.5">
+          <ul
+            className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2"
+            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px" }}
+          >
             {navLinks.map((link) => (
               <li key={link.label}>
                 <button
                   onClick={() => handleNav(link.href)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  className={`transition-colors duration-200 ${
                     activeSection === link.href.slice(1)
-                      ? "text-accent-blue bg-accent-blue/10"
-                      : "text-white/50 hover:text-white hover:bg-white/5"
+                      ? ""
+                      : ""
                   }`}
+                  style={{ color: activeSection === link.href.slice(1) ? "#fb7185" : "#9ca3af" }}
                 >
                   {link.label}
                 </button>
@@ -76,12 +86,18 @@ export default function Navbar() {
               href="https://github.com/mehedinassah"
               target="_blank"
               rel="noreferrer"
-              className="hidden sm:block btn-primary text-xs"
+              className="hidden sm:inline-flex items-center rounded-md px-4 py-2 text-white"
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "12px",
+                background: "linear-gradient(135deg, #fb7185, #f43f5e)",
+              }}
             >
               GitHub ↗
             </a>
             <button
-              className="md:hidden p-2.5 rounded-lg glass text-white/70 hover:text-white transition-colors"
+              className="md:hidden p-2.5 rounded-lg text-white/80 hover:text-white transition-colors"
+              style={{ border: "0.5px solid rgba(251,113,133,0.2)" }}
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
             >
@@ -92,16 +108,20 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden mt-2 pt-2 border-t border-white/10 flex flex-col gap-1 max-h-[70vh] overflow-y-auto">
+          <div className="md:hidden mt-3 pt-3 border-t flex flex-col gap-1 max-h-[70vh] overflow-y-auto"
+            style={{ borderColor: "rgba(251,113,133,0.15)" }}
+          >
             {navLinks.map((link) => (
               <button
                 key={link.label}
                 onClick={() => handleNav(link.href)}
-                className={`text-left px-3 py-3 rounded-lg text-sm font-medium transition-all ${
-                  activeSection === link.href.slice(1)
-                    ? "text-accent-blue bg-accent-blue/10"
-                    : "text-white/60 hover:text-white hover:bg-white/5"
-                }`}
+                className="text-left px-3 py-3 rounded-lg transition-all"
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "12px",
+                  color: activeSection === link.href.slice(1) ? "#fb7185" : "#9ca3af",
+                  background: activeSection === link.href.slice(1) ? "rgba(251,113,133,0.08)" : "transparent",
+                }}
               >
                 {link.label}
               </button>
@@ -110,7 +130,12 @@ export default function Navbar() {
               href="https://github.com/mehedinassah"
               target="_blank"
               rel="noreferrer"
-              className="mt-2 btn-primary text-xs text-center py-3"
+              className="mt-2 rounded-md text-center py-3 text-white"
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "12px",
+                background: "linear-gradient(135deg, #fb7185, #f43f5e)",
+              }}
             >
               GitHub ↗
             </a>
