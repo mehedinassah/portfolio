@@ -1,11 +1,11 @@
 import "./index.css";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Experience from "./components/Experience";
-import Contact from "./components/Contact";
+import HeroAdvanced from "./components/HeroCanvas";
+import AboutCodeEditor from "./components/AboutCodeEditor";
+import Skills3D from "./components/Skills3D";
+import ProjectsCarousel from "./components/ProjectsCarousel";
+import ExperienceTimeline from "./components/ExperienceTimeline";
+import TerminalContact from "./components/TerminalContact";
 import Footer from "./components/Footer";
 
 export default function App() {
@@ -13,12 +13,12 @@ export default function App() {
     <div className="relative min-h-screen" style={{ background: "#030712" }}>
       <Navbar />
       <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
+        <HeroAdvanced />
+        <AboutCodeEditor />
+        <Skills3D />
+        <ProjectsCarousel />
+        <ExperienceTimeline />
+        <TerminalContact />
       </main>
       <Footer />
     </div>
