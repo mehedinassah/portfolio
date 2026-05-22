@@ -14,7 +14,6 @@ function SkillsCube({ skills, category, cubeSize = 300 }) {
         y: prev.y + 3,
       }));
     }, 50);
-
     return () => clearInterval(interval);
   }, []);
 

@@ -159,76 +159,29 @@ export default function AboutCodeEditor() {
 
   return (
     <section id="about" className="section-about py-24 md:py-32 px-6 relative overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <motion.div
-          className="absolute top-0 left-1/3 w-96 h-96 bg-accent-blue/10 rounded-full blur-[120px]"
-          animate={{ y: [0, 50, 0] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
+        <motion.div className="absolute top-0 left-1/3 w-96 h-96 bg-accent-blue/10 rounded-full blur-[120px]" animate={{ y: [0, 50, 0] }} transition={{ duration: 8, repeat: Infinity }} />
       </div>
 
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <p className="font-mono text-xs text-accent-blue uppercase tracking-widest mb-4">
-            Who am I?
-          </p>
-          <h2 className="font-display font-900 text-5xl md:text-6xl text-white">
-            About Me
-          </h2>
+        <motion.div className="mb-12" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+          <p className="font-mono text-xs text-accent-blue uppercase tracking-widest mb-4">Who am I?</p>
+          <h2 className="font-display font-900 text-5xl md:text-6xl text-white">About Me</h2>
         </motion.div>
 
-        {/* Code Editor Container */}
-        <motion.div
-          className="rounded-lg border border-accent-blue/30 backdrop-blur-sm overflow-hidden bg-accent-slate/5 shadow-2xl"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          viewport={{ once: true }}
-        >
-          {/* Tab Bar */}
+        <motion.div className="rounded-lg border border-accent-blue/30 backdrop-blur-sm overflow-hidden bg-accent-slate/5 shadow-2xl" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} viewport={{ once: true }}>
           <div className="flex items-center border-b border-accent-blue/20 bg-accent-slate/10 px-4 py-2 overflow-x-auto">
             {tabs.map((tab, idx) => (
-              <motion.button
-                key={tab.id}
-                onClick={() => setActiveTab(idx)}
-                className={`px-4 py-2 text-sm font-mono flex items-center gap-2 border-b-2 transition-all whitespace-nowrap ${
-                  activeTab === idx
-                    ? "border-accent-blue text-accent-blue"
-                    : "border-transparent text-accent-slate hover:text-accent-slate-light"
-                }`}
-                whileHover={{ y: -2 }}
-              >
+              <button key={tab.id} onClick={() => setActiveTab(idx)} className={`px-4 py-2 text-sm font-mono flex items-center gap-2 border-b-2 transition-all whitespace-nowrap ${activeTab === idx ? "border-accent-blue text-accent-blue" : "border-transparent text-accent-slate hover:text-accent-slate-light"}`}>
                 <span>{tab.icon}</span>
                 <span>{tab.label}</span>
-                {activeTab === idx && (
-                  <motion.div
-                    className="ml-2 w-2 h-2 rounded-full bg-accent-blue"
-                    layoutId="activeTab"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </motion.button>
+              </button>
             ))}
           </div>
 
-          {/* Content Area */}
           <div className="p-8 min-h-96 bg-gradient-to-br from-accent-slate/5 via-accent-blue/5 to-accent-slate/10">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={tabs[activeTab].id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-              >
+              <motion.div key={tabs[activeTab].id} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}>
                 {tabs[activeTab].content}
               </motion.div>
             </AnimatePresence>

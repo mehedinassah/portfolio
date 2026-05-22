@@ -13,7 +13,6 @@ const TerminalContact = () => {
     { type: "system", text: "Welcome to Mehedi Hassan's contact terminal 🚀" },
     { type: "system", text: "Type 'help' for available commands" },
   ]);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const terminalRef = useRef(null);
 
   useEffect(() => {
@@ -42,18 +41,10 @@ const TerminalContact = () => {
         "  help           - Show this help menu",
       ],
     },
-    email: {
-      output: ["📧 Email: idehemnassah@gmail.com"],
-    },
-    linkedin: {
-      output: ["💼 LinkedIn: linkedin.com/in/mehedinas"],
-    },
-    github: {
-      output: ["🐙 GitHub: github.com/mehedinassah"],
-    },
-    location: {
-      output: ["📍 Location: Dhaka, Bangladesh"],
-    },
+    email: { output: ["📧 Email: idehemnassah@gmail.com"] },
+    linkedin: { output: ["💼 LinkedIn: linkedin.com/in/mehedinas"] },
+    github: { output: ["🐙 GitHub: github.com/mehedinassah"] },
+    location: { output: ["📍 Location: Dhaka, Bangladesh"] },
     availability: {
       output: [
         "⏰ Status: Available",
@@ -66,7 +57,6 @@ const TerminalContact = () => {
   const handleCommand = (cmd) => {
     const trimmed = cmd.trim().toLowerCase();
 
-    // Add user input to history
     setHistory((prev) => [...prev, { type: "user", text: `$ ${cmd}` }]);
 
     if (trimmed === "clear") {
@@ -106,7 +96,6 @@ const TerminalContact = () => {
 
   return (
     <section id="contact" className="section-contact py-16 md:py-32 px-4 md:px-6 relative overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 -z-10">
         <motion.div
           className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-blue/10 rounded-full blur-[120px]"
@@ -116,7 +105,6 @@ const TerminalContact = () => {
       </div>
 
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
         <motion.div
           className="mb-12 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -135,7 +123,6 @@ const TerminalContact = () => {
           </p>
         </motion.div>
 
-        {/* Terminal Container */}
         <motion.div
           className="rounded-lg border border-accent-blue/30 backdrop-blur-sm overflow-hidden bg-accent-slate/10 shadow-2xl"
           initial={{ opacity: 0, y: 40 }}
@@ -143,17 +130,15 @@ const TerminalContact = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
         >
-          {/* Terminal Header */}
           <div className="flex items-center justify-between px-4 py-3 bg-accent-slate/20 border-b border-accent-blue/20">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              <div className="w-3 h-3 rounded-full bg-red-500" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+              <div className="w-3 h-3 rounded-full bg-green-500" />
             </div>
             <span className="text-xs text-accent-slate font-mono">mehedi@portfolio:~$</span>
           </div>
 
-          {/* Terminal Content */}
           <div
             ref={terminalRef}
             className="p-4 md:p-6 h-72 sm:h-80 md:h-96 overflow-y-auto font-mono text-xs sm:text-sm bg-gradient-to-b from-transparent to-accent-blue/5 space-y-2"
@@ -185,7 +170,6 @@ const TerminalContact = () => {
               </motion.div>
             ))}
 
-            {/* Blinking Cursor */}
             <motion.div
               animate={{ opacity: [1, 0] }}
               transition={{ duration: 0.8, repeat: Infinity }}
@@ -193,7 +177,6 @@ const TerminalContact = () => {
             />
           </div>
 
-          {/* Terminal Input */}
           <form onSubmit={handleSubmit} className="border-t border-accent-blue/20 p-3 md:p-4 flex gap-2">
             <span className="text-accent-blue font-mono">$</span>
             <input
@@ -207,7 +190,6 @@ const TerminalContact = () => {
           </form>
         </motion.div>
 
-        {/* Quick Links */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12"
           initial={{ opacity: 0, y: 40 }}
@@ -237,6 +219,7 @@ const TerminalContact = () => {
           ].map((link, idx) => {
             const IconComponent = link.icon;
             const isHovered = hoveredIcon === idx;
+
             return (
               <motion.a
                 key={idx}
@@ -249,7 +232,13 @@ const TerminalContact = () => {
                 onMouseLeave={() => setHoveredIcon(null)}
               >
                 <div className="mb-4 flex justify-center">
-                  <IconComponent style={{ fontSize: "40px", color: isHovered ? "#ffffff" : "#3b82f6", transition: "color 0.3s ease" }} />
+                  <IconComponent
+                    style={{
+                      fontSize: "40px",
+                      color: isHovered ? "#ffffff" : "#3b82f6",
+                      transition: "color 0.3s ease",
+                    }}
+                  />
                 </div>
                 <h4 className="text-white font-bold text-sm md:text-base mb-1">{link.title}</h4>
                 <p className="text-accent-slate text-xs md:text-sm group-hover:text-accent-blue transition-colors truncate">
