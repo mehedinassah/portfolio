@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mehedi Hassan | Backend Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Syne', sans-serif;
+      background: #111827;
+      color: #f9fafb;
+      overflow: hidden;
+    }
+
+    body {
+      background-image: radial-gradient(circle, rgba(251, 113, 133, 0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* ============== NAVBAR ============== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(10px);
+      border-bottom: 0.5px solid rgba(251, 113, 133, 0.15);
+      height: 64px;
+    }
+
+    /* Logo */
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo-mh {
+      color: #fb7185;
+    }
+
+    .nav-logo-dev {
+      color: #fb7185;
+      opacity: 0.5;
+    }
+
+    /* Center links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a {
+      color: #9ca3af;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #fb7185;
+    }
+
+    .nav-separator {
+      color: #4b5563;
+    }
+
+    /* GitHub button */
+    .nav-github {
+      background: linear-gradient(135deg, #fb7185, #f43f5e);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-github:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ============== HERO SECTION ============== */
+    .hero {
+      display: flex;
+      align-items: center;
+      padding: 40px 32px;
+      gap: 32px;
+      height: 100vh;
+      padding-top: 104px;
+      box-sizing: border-box;
+    }
+
+    /* LEFT SIDE */
+    .hero-left {
+      flex: 1;
+    }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .hero-name-mehedi {
+      color: #f9fafb;
+      display: block;
+    }
+
+    .hero-name-hassan {
+      display: block;
+      background: linear-gradient(135deg, #fb7185, #f43f5e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: #e5e7eb;
+      max-width: 340px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .hero-bio {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #6b7280;
+      max-width: 320px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .hero-stats {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #4b5563;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-stats-separator {
+      color: #fb7185;
+      margin: 0 8px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #fb7185, #f43f5e);
+      color: white;
+      box-shadow: 0 4px 12px rgba(251, 113, 133, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(251, 113, 133, 0.35);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fb7185;
+      border: 1px solid rgba(251, 113, 133, 0.4);
+    }
+
+    .btn-secondary:hover {
+      border-color: #fb7185;
+      transform: translateY(-2px);
+    }
+
+    /* RIGHT SIDE */
+    .hero-right {
+      flex: 0 0 240px;
+      height: 280px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Orb background */
+    .orb {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(251, 113, 133, 0.18) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    /* Hexagon SVG */
+    .hexagon-container {
+      position: relative;
+      z-index: 2;
+      width: 170px;
+      height: 170px;
+    }
+
+    .hexagon-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .hexagon-outer {
+      filter: drop-shadow(0 8px 24px rgba(251, 113, 133, 0.15));
+    }
+
+    /* Hexagon content */
+    .hexagon-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fb7185;
+    }
+
+    .hexagon-initials {
+      text-align: center;
+    }
+
+    .hexagon-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #6b7280;
+      margin-top: 8px;
+    }
+
+    .hexagon-file {
+      font-size: 8px;
+      color: #4b5563;
+      margin-top: 2px;
+    }
+
+    /* Status card */
+    .status-card {
+      position: absolute;
+      bottom: 16px;
+      left: -10px;
+      z-index: 3;
+      background: rgba(31, 41, 55, 0.85);
+      backdrop-filter: blur(8px);
+      border: 0.5px solid rgba(251, 113, 133, 0.2);
+      border-radius: 9px;
+      padding: 10px 14px;
+      width: auto;
+      min-width: 160px;
+    }
+
+    .status-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #fb7185;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: #d1d5db;
+      margin-bottom: 4px;
+    }
+
+    .status-dot {
+      width: 5px;
+      height: 5px;
+      background: #fb7185;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .status-uptime {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #6b7280;
+      margin-top: 6px;
+      font-weight: 400;
+    }
+
+    /* ============== RESPONSIVE ============== */
+    @media (max-width: 1024px) {
+      .hero {
+        flex-direction: column;
+        padding: 40px 32px;
+        gap: 48px;
+        height: auto;
+        min-height: 100vh;
+        justify-content: center;
+      }
+
+      .hero-right {
+        flex: 0 0 auto;
+        width: 240px;
+        height: 280px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 12px 16px;
+      }
+
+      .hero {
+        padding: 20px 16px;
+        gap: 32px;
+      }
+
+      .hero-name {
+        font-size: clamp(32px, 5vw, 48px);
+      }
+
+      .hero-subtitle {
+        font-size: 13px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-logo">
+      <span class="nav-logo-mh">MH</span><span class="nav-logo-dev">.dev</span>
+    </div>
+    
+    <div class="nav-links">
+      <a href="#home" class="active">home</a>
+      <span class="nav-separator">·</span>
+      <a href="#about">about</a>
+      <span class="nav-separator">·</span>
+      <a href="#skills">skills</a>
+      <span class="nav-separator">·</span>
+      <a href="#projects">projects</a>
+      <span class="nav-separator">·</span>
+      <a href="#contact">contact</a>
+    </div>
+
+    <button class="nav-github">GitHub ↗</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <!-- Left Side -->
+    <div class="hero-left">
+      <h1 class="hero-name">
+        <span class="hero-name-mehedi">Mehedi</span>
+        <span class="hero-name-hassan">Hassan</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        Backend Engineer building scalable systems.
+      </p>
+      
+      <p class="hero-bio">
+        I design and build efficient APIs, systems, and real-world applications. CS student from Dhaka, passionate about system design and clean code.
+      </p>
+
+      <div class="hero-stats">
+        20+ projects <span class="hero-stats-separator">·</span> Backend-focused <span class="hero-stats-separator">·</span> System design
+      </div>
+
+      <div class="hero-buttons">
+        <button class="btn btn-primary">View Projects</button>
+        <button class="btn btn-secondary">Contact Me</button>
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="hero-right">
+      <!-- Orb -->
+      <div class="orb"></div>
+
+      <!-- Hexagon -->
+      <div class="hexagon-container">
+        <svg class="hexagon-svg" viewBox="0 0 170 170" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="hexgradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#fb7185;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#f43f5e;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="hexinner" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#1f2937;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#111827;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          
+          <!-- Outer border -->
+          <polygon class="hexagon-outer" points="85,5 158,44 158,126 85,165 12,126 12,44" fill="url(#hexgradient)"/>
+          
+          <!-- Inner content area -->
+          <polygon points="85,12 151,48 151,122 85,158 19,122 19,48" fill="url(#hexinner)"/>
+        </svg>
+        
+        <!-- Content overlay -->
+        <div class="hexagon-content" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <div class="hexagon-initials">MH</div>
+          <div class="hexagon-label">your photo here</div>
+          <div class="hexagon-file">portrait.jpg</div>
+        </div>
+      </div>
+
+      <!-- Status Card -->
+      <div class="status-card">
+        <div class="status-title">System Status</div>
+        <div class="status-item">
+          <div class="status-dot"></div>
+          <span>Production</span>
+        </div>
+        <div class="status-item">
+          <div class="status-dot"></div>
+          <span>Zero Downtime</span>
+        </div>
+        <div class="status-uptime">Uptime: 99.9%</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Nav link active state
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function() {
+        document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // GitHub button
+    document.querySelector('.nav-github').addEventListener('click', function() {
+      window.open('https://github.com/mehedinassah', '_blank');
+    });
+
+    // Button interactions
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (this.textContent === 'View Projects') {
+          // Scroll to projects section
+          console.log('View Projects clicked');
+        } else if (this.textContent === 'Contact Me') {
+          // Scroll to contact section
+          console.log('Contact Me clicked');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

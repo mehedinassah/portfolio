@@ -1,22 +1,20 @@
 import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "home", href: "#hero" },
+  { label: "about", href: "#about" },
+  { label: "skills", href: "#skills" },
+  { label: "projects", href: "#projects" },
+  { label: "contact", href: "#contact" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 40);
+    const handleScroll = () => {
       const sections = navLinks.map((l) => l.href.slice(1));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -26,116 +24,123 @@ export default function Navbar() {
         }
       }
     };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    // Set initial active section to "hero" if at top
+    setActiveSection("hero");
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleNav = (href) => {
     setMenuOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "auto", block: "start" });
+    }
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "py-3 backdrop-blur-xl bg-[#030712]/80 border-b border-white/5"
-          : "py-5"
-      }`}
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-3"
+      style={{
+        background: "rgba(17,24,39,0.75)",
+        backdropFilter: "blur(10px)",
+        borderBottom: "0.5px solid rgba(251,113,133,0.15)",
+      }}
     >
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <button
-          onClick={() => handleNav("#home")}
-          className="font-display font-800 text-xl tracking-tight"
-        >
-          <span className="text-gradient">MH</span>
-          <span className="text-white/60 ml-1 text-sm font-mono">.dev</span>
-        </button>
+      <div className="max-w-6xl mx-auto">
+        <div className="relative flex items-center justify-between">
+          {/* Logo */}
+          <button
+            onClick={() => handleNav("#hero")}
+            className="tracking-tight"
+            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "15px" }}
+          >
+            <span style={{ color: "#fb7185" }}>MH</span>
+            <span style={{ color: "#fb7185", opacity: 0.5 }}>.dev</span>
+          </button>
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <li key={link.label}>
-              <button
-                onClick={() => handleNav(link.href)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 font-body ${
-                  activeSection === link.href.slice(1)
-                    ? "text-[#00d4ff] bg-[#00d4ff]/10"
-                    : "text-white/50 hover:text-white hover:bg-white/5"
-                }`}
-              >
-                {link.label}
-              </button>
-            </li>
-          ))}
-          <li className="ml-2">
+          {/* Desktop Nav */}
+          <ul
+            className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2"
+            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px" }}
+          >
+            {navLinks.map((link) => (
+              <li key={link.label}>
+                <button
+                  onClick={() => handleNav(link.href)}
+                  className={`transition-colors duration-200 ${
+                    activeSection === link.href.slice(1)
+                      ? ""
+                      : ""
+                  }`}
+                  style={{ color: activeSection === link.href.slice(1) ? "#fb7185" : "#9ca3af" }}
+                >
+                  {link.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+
+          {/* GitHub & Mobile Toggle */}
+          <div className="flex items-center gap-3">
             <a
               href="https://github.com/mehedinassah"
               target="_blank"
               rel="noreferrer"
-              className="btn-primary text-sm px-5 py-2.5 inline-block rounded-lg"
+              className="hidden sm:inline-flex items-center rounded-md px-4 py-2 text-white"
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "12px",
+                background: "linear-gradient(135deg, #fb7185, #f43f5e)",
+              }}
             >
               GitHub ↗
             </a>
-          </li>
-        </ul>
-
-        {/* Mobile Hamburger */}
-        <button
-          className="md:hidden p-2 rounded-lg bg-white/5 text-white/70 hover:text-white"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <div className="w-5 h-4 flex flex-col justify-between">
-            <span
-              className={`block h-0.5 bg-current transition-all duration-300 ${
-                menuOpen ? "rotate-45 translate-y-1.5" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 bg-current transition-all duration-300 ${
-                menuOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 bg-current transition-all duration-300 ${
-                menuOpen ? "-rotate-45 -translate-y-2" : ""
-              }`}
-            />
-          </div>
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <div
-        className={`md:hidden transition-all duration-300 overflow-hidden ${
-          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="px-6 py-4 backdrop-blur-xl bg-[#0a0f1e]/95 border-t border-white/5 flex flex-col gap-1">
-          {navLinks.map((link) => (
             <button
-              key={link.label}
-              onClick={() => handleNav(link.href)}
-              className={`text-left px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-                activeSection === link.href.slice(1)
-                  ? "text-[#00d4ff] bg-[#00d4ff]/10"
-                  : "text-white/60 hover:text-white hover:bg-white/5"
-              }`}
+              className="md:hidden p-2.5 rounded-lg text-white/80 hover:text-white transition-colors"
+              style={{ border: "0.5px solid rgba(251,113,133,0.2)" }}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
             >
-              {link.label}
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
-          ))}
-          <a
-            href="https://github.com/mehedinassah"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-2 btn-primary text-sm text-center rounded-lg py-3"
-          >
-            GitHub ↗
-          </a>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden mt-3 pt-3 border-t flex flex-col gap-1 max-h-[70vh] overflow-y-auto"
+            style={{ borderColor: "rgba(251,113,133,0.15)" }}
+          >
+            {navLinks.map((link) => (
+              <button
+                key={link.label}
+                onClick={() => handleNav(link.href)}
+                className="text-left px-3 py-3 rounded-lg transition-all"
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "12px",
+                  color: activeSection === link.href.slice(1) ? "#fb7185" : "#9ca3af",
+                  background: activeSection === link.href.slice(1) ? "rgba(251,113,133,0.08)" : "transparent",
+                }}
+              >
+                {link.label}
+              </button>
+            ))}
+            <a
+              href="https://github.com/mehedinassah"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 rounded-md text-center py-3 text-white"
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "12px",
+                background: "linear-gradient(135deg, #fb7185, #f43f5e)",
+              }}
+            >
+              GitHub ↗
+            </a>
+          </div>
+        )}
       </div>
     </nav>
   );

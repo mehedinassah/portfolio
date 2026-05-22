@@ -2,7 +2,8 @@ export const staticProjects = [
   {
     id: 1,
     title: "banauAI",
-    description: "AI-powered web application project focused on modern frontend architecture and rapid product iteration.",
+    description:
+      "AI-powered web application project focused on modern frontend architecture and rapid product iteration.",
     techStack: ["TypeScript", "React", "Vite", "CSS", "AI Integration"],
     githubUrl: "https://github.com/mehedinassah/banauAI",
     liveDemoUrl: null,
@@ -12,7 +13,8 @@ export const staticProjects = [
   {
     id: 2,
     title: "Daily-Challange",
-    description: "A website that creates random day-to-day life challenges.",
+    description:
+      "A website that creates random day-to-day life challenges.",
     techStack: ["JavaScript", "HTML", "CSS", "DOM", "Frontend"],
     githubUrl: "https://github.com/mehedinassah/Daily-Challange",
     liveDemoUrl: null,
@@ -22,12 +24,46 @@ export const staticProjects = [
   {
     id: 3,
     title: "portfolio",
-    description: "Personal portfolio website featuring a modern UI, responsive design, and project highlights.",
+    description:
+      "Personal portfolio website featuring a modern UI, responsive design, and project highlights.",
     techStack: ["JavaScript", "React", "Tailwind CSS", "UI/UX", "Vercel"],
     githubUrl: "https://github.com/mehedinassah/portfolio",
     liveDemoUrl: "https://mehedi-codes.vercel.app/",
     category: "Web",
     emoji: "🌐",
+  },
+  {
+    id: 4,
+    title: "Top-Line",
+    description:
+      "TypeScript web project deployed on Vercel with a clean and scalable frontend codebase.",
+    techStack: ["TypeScript", "React", "Vercel", "CSS", "Frontend"],
+    githubUrl: "https://github.com/mehedinassah/Top-Line",
+    liveDemoUrl: "https://toplinewear.vercel.app/",
+    category: "Web",
+    emoji: "📈",
+  },
+  {
+    id: 5,
+    title: "eSIM-Travel-App",
+    description:
+      "Android application for travel connectivity workflows, built with Kotlin and mobile-first architecture.",
+    techStack: ["Kotlin", "Android", "MVVM", "Mobile UI", "REST API"],
+    githubUrl: "https://github.com/mehedinassah/eSIM-Travel-App",
+    liveDemoUrl: null,
+    category: "Android",
+    emoji: "📱",
+  },
+  {
+    id: 6,
+    title: "smart-geo-landmarks",
+    description:
+      "Android app built with Kotlin that visualizes and manages geo-tagged landmarks using map integration, visit tracking, offline support, and MVVM architecture.",
+    techStack: ["Kotlin", "Android", "Maps", "MVVM", "Offline Support"],
+    githubUrl: "https://github.com/mehedinassah/smart-geo-landmarks",
+    liveDemoUrl: null,
+    category: "Android",
+    emoji: "🗺️",
   },
 ];
 

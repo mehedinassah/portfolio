@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mehedi Hassan | Backend Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #111827;
+      --bg-surface: #1f2937;
+      --accent-coral: #fb7185;
+      --accent-rose: #f43f5e;
+      --text-primary: #f9fafb;
+      --text-muted: #6b7280;
+      --gradient-accent: linear-gradient(135deg, #fb7185 0%, #f43f5e 100%);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Syne', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    body {
+      background-image: 
+        radial-gradient(circle at 1px 1px, rgba(107, 114, 128, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* ============== HEADER/NAV ============== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(17, 24, 39, 0.7);
+      border-bottom: 1px solid rgba(251, 113, 133, 0.1);
+      padding: 1rem 2rem;
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 600;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.05em;
+      animation: fadeIn 0.8s ease-out 0.1s both;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      animation: fadeIn 0.8s ease-out 0.2s both;
+    }
+
+    nav a {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--accent-coral);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+    }
+
+    /* ============== HERO SECTION ============== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 2rem 2rem;
+      background-color: var(--bg-primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    /* ============== LEFT CONTENT ============== */
+    .hero-left {
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    .hero-name {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-name-first {
+      color: var(--text-primary);
+      display: block;
+      animation: fadeIn 0.8s ease-out 0.15s both;
+    }
+
+    .hero-name-last {
+      display: block;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeIn 0.8s ease-out 0.25s both;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin: 1.5rem 0;
+      min-height: 2.5rem;
+      animation: fadeIn 0.8s ease-out 0.35s both;
+    }
+
+    .hero-subtitle::after {
+      content: '';
+      animation: blink 1s infinite 3s;
+    }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .hero-bio {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-bottom: 2rem;
+      animation: fadeIn 0.8s ease-out 0.45s both;
+    }
+
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 2rem 0 2.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      animation: fadeIn 0.8s ease-out 0.55s both;
+    }
+
+    .hero-stats span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 1.5rem;
+      background: linear-gradient(180deg, transparent, var(--accent-coral), transparent);
+      opacity: 0.5;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      animation: fadeIn 0.8s ease-out 0.65s both;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.025em;
+    }
+
+    .btn-primary {
+      background: var(--gradient-accent);
+      color: white;
+      box-shadow: 0 10px 30px rgba(251, 113, 133, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(251, 113, 133, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent-coral);
+      border: 1.5px solid var(--accent-coral);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(251, 113, 133, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* ============== RIGHT CONTENT ============== */
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: slideInRight 0.8s ease-out;
+    }
+
+    /* Floating background orb */
+    .orb-background {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--accent-coral) 0%, var(--accent-rose) 100%);
+      border-radius: 50%;
+      opacity: 0.15;
+      filter: blur(60px);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Hexagon portrait */
+    .hexagon-frame {
+      position: relative;
+      width: 280px;
+      height: 320px;
+      animation: slideInRight 0.8s ease-out 0.2s both;
+    }
+
+    .hexagon-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      border: 3px solid;
+      border-image: var(--gradient-accent) 1;
+      background: linear-gradient(135deg, rgba(251, 113, 133, 0.1), rgba(244, 63, 94, 0.1));
+      box-shadow: 
+        0 0 30px rgba(251, 113, 133, 0.3),
+        inset 0 0 30px rgba(251, 113, 133, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hexagon-content {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .hexagon-placeholder {
+      text-align: center;
+      color: var(--accent-coral);
+      opacity: 0.6;
+    }
+
+    .hexagon-placeholder-icon {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .hexagon-placeholder-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* System Status Card */
+    .status-card {
+      position: absolute;
+      bottom: -30px;
+      left: -30px;
+      width: 220px;
+      padding: 1.25rem;
+      background: rgba(31, 41, 55, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(251, 113, 133, 0.2);
+      border-radius: 0.75rem;
+      animation: slideInLeft 0.8s ease-out 0.4s both;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(251, 113, 133, 0.1);
+    }
+
+    .status-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-coral);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    .status-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .status-check {
+      color: var(--accent-coral);
+      font-weight: bold;
+    }
+
+    .status-label {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* ============== ANIMATIONS ============== */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* ============== RESPONSIVE ============== */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 5rem 1rem 1rem;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-name {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .hero-right {
+        margin-top: 2rem;
+      }
+
+      .status-card {
+        position: static;
+        margin-top: 1.5rem;
+      }
+
+      .orb-background {
+        width: 200px;
+        height: 200px;
+      }
+
+      .hexagon-frame {
+        width: 220px;
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">MH.dev</div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <!-- Left Content -->
+      <div class="hero-left">
+        <h1 class="hero-name">
+          <span class="hero-name-first">Mehedi</span>
+          <span class="hero-name-last">Hassan</span>
+        </h1>
+        
+        <p class="hero-subtitle">Backend Engineer building scalable systems.</p>
+        
+        <p class="hero-bio">
+          I design and build efficient APIs, distributed systems, and real-world applications. 
+          Computer Science student from Dhaka, passionate about clean code and system architecture.
+        </p>
+
+        <div class="hero-stats">
+          <span>20+ Projects</span>
+          <div class="stat-divider"></div>
+          <span>Backend-focused</span>
+          <div class="stat-divider"></div>
+          <span>System Design</span>
+        </div>
+
+        <div class="hero-cta">
+          <button class="btn btn-primary" onclick="scrollToSection('projects')">
+            View Projects
+          </button>
+          <button class="btn btn-secondary" onclick="scrollToSection('contact')">
+            Contact Me
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Content -->
+      <div class="hero-right">
+        <!-- Floating background orb -->
+        <div class="orb-background"></div>
+
+        <!-- Hexagon portrait frame -->
+        <div class="hexagon-frame">
+          <div class="hexagon-container">
+            <div class="hexagon-content">
+              <div class="hexagon-placeholder">
+                <span class="hexagon-placeholder-icon">👨‍💻</span>
+                <div class="hexagon-placeholder-text">PORTRAIT</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Status Card -->
+        <div class="status-card">
+          <div class="status-title">System Status</div>
+          <div class="status-item">
+            <span class="status-check">✓</span>
+            <span class="status-label">Production</span>
+          </div>
+          <div class="status-item">
+            <span class="status-check">✓</span>
+            <span class="status-label">Zero Downtime</span>
+          </div>
+          <div class="status-item">
+            <span class="status-check">✓</span>
+            <span class="status-label">Uptime 99.9%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Placeholder sections for scrolling -->
+  <section id="projects" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-primary); font-size: 2rem; color: var(--accent-coral);">
+    Projects Section (Coming Soon)
+  </section>
+
+  <section id="contact" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-primary); font-size: 2rem; color: var(--accent-coral);">
+    Contact Section (Coming Soon)
+  </section>
+
+  <script>
+    // Typewriter effect for subtitle
+    document.addEventListener('DOMContentLoaded', function() {
+      const subtitleElement = document.querySelector('.hero-subtitle');
+      const text = 'Backend Engineer building scalable systems.';
+      let index = 0;
+
+      // Reset the subtitle
+      subtitleElement.textContent = '';
+
+      function typeCharacter() {
+        if (index < text.length) {
+          subtitleElement.textContent += text[index];
+          index++;
+          setTimeout(typeCharacter, 50);
+        }
+      }
+
+      // Start typewriter effect after a delay
+      setTimeout(typeCharacter, 800);
+    });
+
+    // Smooth scroll function
+    function scrollToSection(id) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Listen for nav clicks
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const id = this.getAttribute('href').slice(1);
+        scrollToSection(id);
+      });
+    });
+  </script>
+</body>
+</html>

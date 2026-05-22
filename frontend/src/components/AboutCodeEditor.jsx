@@ -24,6 +24,48 @@ const tabs = [
             <span className="text-emerald-400">"Full-Stack Developer & AI Innovator"</span>
             <span className="text-accent-slate">,</span>
           </div>
+          <div>
+            <span className="text-purple-400">"location"</span>
+            <span className="text-accent-slate">: </span>
+            <span className="text-emerald-400">"Dhaka, Bangladesh"</span>
+            <span className="text-accent-slate">,</span>
+          </div>
+          <div>
+            <span className="text-purple-400">"passion"</span>
+            <span className="text-accent-slate">: </span>
+            <span className="text-emerald-400">"Building scalable systems and pushing technological boundaries"</span>
+            <span className="text-accent-slate">,</span>
+          </div>
+          <div>
+            <span className="text-purple-400">"years_experience"</span>
+            <span className="text-accent-slate">: </span>
+            <span className="text-orange-400">2</span>
+            <span className="text-accent-slate">,</span>
+          </div>
+          <div>
+            <span className="text-purple-400">"focus_areas"</span>
+            <span className="text-accent-slate">: [</span>
+          </div>
+          <div className="pl-4">
+            <div>
+              <span className="text-emerald-400">"Full-Stack Development"</span>
+              <span className="text-accent-slate">,</span>
+            </div>
+            <div>
+              <span className="text-emerald-400">"AI/ML Integration"</span>
+              <span className="text-accent-slate">,</span>
+            </div>
+            <div>
+              <span className="text-emerald-400">"System Architecture"</span>
+              <span className="text-accent-slate">,</span>
+            </div>
+            <div>
+              <span className="text-emerald-400">"Performance Optimization"</span>
+            </div>
+          </div>
+          <div>
+            <span className="text-accent-slate">]</span>
+          </div>
         </div>
         <div className="text-accent-slate">
           <span className="text-accent-blue">{"}"}</span>
@@ -49,6 +91,63 @@ const tabs = [
             <span className="text-accent-slate">: </span>
             <span className="text-emerald-400">["React", "Tailwind", "Framer Motion", "Next.js"]</span>
           </div>
+          <div>
+            <span className="text-purple-400">backend</span>
+            <span className="text-accent-slate">: </span>
+            <span className="text-emerald-400">["Node.js", "Express", "Java", "Python"]</span>
+          </div>
+          <div>
+            <span className="text-purple-400">databases</span>
+            <span className="text-accent-slate">: </span>
+            <span className="text-emerald-400">["MongoDB", "PostgreSQL", "Firebase", "Supabase"]</span>
+          </div>
+          <div>
+            <span className="text-purple-400">tools</span>
+            <span className="text-accent-slate">: </span>
+            <span className="text-emerald-400">["Git", "Docker", "AWS", "Firebase"]</span>
+          </div>
+          <div>
+            <span className="text-purple-400">specialization</span>
+            <span className="text-accent-slate">: </span>
+            <span className="text-emerald-400">["AI/ML", "Real-time Systems", "3D Web"]</span>
+          </div>
+        </div>
+        <div>
+          <span className="text-accent-slate">{`}`}</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "experience",
+    label: "experience.log",
+    icon: "📜",
+    content: (
+      <div className="font-mono text-sm space-y-3">
+        <div>
+          <span className="text-orange-400">[2024-PRESENT]</span>
+          <span className="text-accent-slate"> </span>
+          <span className="text-accent-blue">Full-Stack Developer</span>
+        </div>
+        <div className="pl-4 space-y-1 text-accent-slate">
+          <div>• Building scalable web applications with React & Node.js</div>
+          <div>• Implementing AI-powered features and integrations</div>
+          <div>• Optimizing system performance and architecture</div>
+        </div>
+
+        <div className="pt-2">
+          <span className="text-orange-400">[2023-2024]</span>
+          <span className="text-accent-slate"> </span>
+          <span className="text-accent-blue">Junior Developer (Freelance)</span>
+        </div>
+        <div className="pl-4 space-y-1 text-accent-slate">
+          <div>• Delivered 15+ client projects with focus on quality</div>
+          <div>• Specialized in responsive UI and real-time applications</div>
+          <div>• Mentored by senior engineers on best practices</div>
+        </div>
+
+        <div className="pt-4 text-accent-slate text-xs italic">
+          Always learning. Always building. Always improving.
         </div>
       </div>
     ),
@@ -87,6 +186,30 @@ export default function AboutCodeEditor() {
               </motion.div>
             </AnimatePresence>
           </div>
+        </motion.div>
+
+        {/* Stats */}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          {[
+            { label: "Projects Built", value: "15+" },
+            { label: "Years Experience", value: "2" },
+            { label: "Happy Clients", value: "20+" },
+            { label: "Commits", value: "1000+" },
+          ].map((stat, idx) => (
+            <div
+              key={idx}
+              className="p-4 rounded-lg bg-accent-slate/5 border border-accent-blue/20 text-center hover:border-accent-blue/50 transition-all"
+            >
+              <div className="text-accent-blue font-bold text-2xl">{stat.value}</div>
+              <div className="text-accent-slate text-sm">{stat.label}</div>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>
