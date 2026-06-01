@@ -16,7 +16,7 @@ const projects = [
     blurb: "A storefront-style site for the Topline Wear concept, built with React and TypeScript and deployed on Vercel.",
     tech: ["TypeScript", "React", "Tailwind CSS", "Vercel"],
     github: "https://github.com/mehedinassah/Top-Line",
-    live: "https://topline-theta.vercel.app/",
+    live: "https://toplinewear.vercel.app/",
   },
   {
     title: "Smart Geo Landmarks",
