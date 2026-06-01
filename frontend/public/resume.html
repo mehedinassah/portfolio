@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume — Mehedi Hassan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #efebe0;
+        --ink: #131210;
+        --accent: #ff3b00;
+        --muted: #4a463e;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        min-height: 100vh;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        background-image: linear-gradient(90deg, rgba(19, 18, 16, 0.06) 1px, transparent 1px);
+        background-size: 25vw 100%;
+      }
+      .box {
+        position: relative;
+        width: 100%;
+        max-width: 40rem;
+        border: 2px solid var(--ink);
+        background: var(--paper);
+        box-shadow: 8px 8px 0 0 var(--ink);
+        padding: clamp(1.75rem, 5vw, 3rem);
+      }
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: "Space Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .kicker::before { content: ""; width: 0.7rem; height: 0.7rem; background: var(--accent); }
+      h1 {
+        font-family: "Anton", sans-serif;
+        text-transform: uppercase;
+        font-size: clamp(3.5rem, 16vw, 7rem);
+        line-height: 0.92;
+        margin-top: 1rem;
+      }
+      h1 span { color: var(--accent); }
+      p {
+        margin-top: 1.25rem;
+        max-width: 32rem;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+      .back {
+        margin-top: 2rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 2px solid var(--ink);
+        background: var(--ink);
+        color: var(--paper);
+        padding: 0.9rem 1.5rem;
+        font-family: "Space Mono", monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-decoration: none;
+        box-shadow: 4px 4px 0 0 var(--accent);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .back:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 0 var(--accent); }
+    </style>
+  </head>
+  <body>
+    <main class="box">
+      <span class="kicker">Resume</span>
+      <h1>Oops<span>.</span></h1>
+      <p>
+        My resume isn't uploaded yet. I'll put one up soon, once it's done. In the meantime, have a look
+        around the portfolio or just reach out, I don't bite.
+      </p>
+      <a class="back" href="/">&larr; Back to portfolio</a>
+    </main>
+  </body>
+</html>

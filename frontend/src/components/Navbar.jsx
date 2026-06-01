@@ -1,147 +1,123 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "home", href: "#hero" },
-  { label: "about", href: "#about" },
-  { label: "skills", href: "#skills" },
-  { label: "projects", href: "#projects" },
-  { label: "contact", href: "#contact" },
+  { label: "Work", href: "#projects", index: "01" },
+  { label: "Stack", href: "#skills", index: "02" },
+  { label: "Life", href: "#life", index: "03" },
+  { label: "About", href: "#about", index: "04" },
+  { label: "Contact", href: "#contact", index: "05" },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("hero");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    const ids = ["hero", ...navLinks.map((item) => item.href.slice(1))];
     const handleScroll = () => {
-      const sections = navLinks.map((l) => l.href.slice(1));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && window.scrollY >= el.offsetTop - 120) {
-          setActiveSection(sections[i]);
-          break;
-        }
+      setScrolled(window.scrollY > 12);
+      // sort by actual page position so highlighting is correct regardless of link order
+      const ordered = ids
+        .map((id) => ({ id, top: document.getElementById(id)?.offsetTop ?? Infinity }))
+        .sort((a, b) => a.top - b.top);
+      let current = ordered[0]?.id ?? "hero";
+      for (const section of ordered) {
+        if (window.scrollY >= section.top - 140) current = section.id;
       }
+      setActiveSection(current);
     };
-    // Set initial active section to "hero" if at top
-    setActiveSection("hero");
-    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleNav = (href) => {
     setMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "auto", block: "start" });
-    }
+    document.querySelector(href)?.scrollIntoView({ behavior: "auto", block: "start" });
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-3"
-      style={{
-        background: "rgba(17,24,39,0.75)",
-        backdropFilter: "blur(10px)",
-        borderBottom: "0.5px solid rgba(251,113,133,0.15)",
-      }}
-    >
-      <div className="max-w-6xl mx-auto">
-        <div className="relative flex items-center justify-between">
-          {/* Logo */}
-          <button
-            onClick={() => handleNav("#hero")}
-            className="tracking-tight"
-            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "15px" }}
-          >
-            <span style={{ color: "#fb7185" }}>MH</span>
-            <span style={{ color: "#fb7185", opacity: 0.5 }}>.dev</span>
-          </button>
+    <nav className="fixed top-0 z-50 w-full">
+      <div
+        className={`flex items-stretch justify-between border-b-2 border-line bg-paper transition-shadow ${
+          scrolled ? "shadow-[0_2px_0_0_#131210]" : ""
+        }`}
+      >
+        <button
+          onClick={() => handleNav("#hero")}
+          className="flex items-center gap-3 border-r-2 border-line px-4 py-3 text-left transition-colors hover:bg-ink hover:text-paper md:px-6"
+          aria-label="Go to home"
+        >
+          <span className="grid h-9 w-9 place-items-center bg-accent font-display text-lg leading-none text-paper">
+            M
+          </span>
+          <span className="hidden sm:block">
+            <span className="block font-mono text-[10px] uppercase tracking-[0.22em] text-inkfaint">mehedi hassan</span>
+            <span className="block font-display text-sm uppercase tracking-wide">Full-stack · Android</span>
+          </span>
+        </button>
 
-          {/* Desktop Nav */}
-          <ul
-            className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2"
-            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12px" }}
-          >
-            {navLinks.map((link) => (
-              <li key={link.label}>
+        <ul className="hidden items-stretch md:flex">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.slice(1);
+            return (
+              <li key={link.label} className="border-l-2 border-line">
                 <button
                   onClick={() => handleNav(link.href)}
-                  className={`transition-colors duration-200 ${
-                    activeSection === link.href.slice(1)
-                      ? ""
-                      : ""
+                  className={`flex h-full items-center gap-2 px-5 font-mono text-[12px] uppercase tracking-[0.12em] transition-colors ${
+                    isActive ? "bg-ink text-paper" : "text-ink hover:bg-accent hover:text-paper"
                   }`}
-                  style={{ color: activeSection === link.href.slice(1) ? "#fb7185" : "#9ca3af" }}
                 >
+                  <span className="text-[9px] opacity-60">{link.index}</span>
                   {link.label}
                 </button>
               </li>
-            ))}
-          </ul>
-
-          {/* GitHub & Mobile Toggle */}
-          <div className="flex items-center gap-3">
+            );
+          })}
+          <li className="border-l-2 border-line">
             <a
-              href="https://github.com/mehedinassah"
-              target="_blank"
-              rel="noreferrer"
-              className="hidden sm:inline-flex items-center rounded-md px-4 py-2 text-white"
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "12px",
-                background: "linear-gradient(135deg, #fb7185, #f43f5e)",
-              }}
+              href="/resume.html"
+              className="flex h-full items-center px-5 font-mono text-[12px] uppercase tracking-[0.12em] text-ink transition-colors hover:bg-accent hover:text-paper"
             >
-              GitHub ↗
+              Resume ↗
             </a>
-            <button
-              className="md:hidden p-2.5 rounded-lg text-white/80 hover:text-white transition-colors"
-              style={{ border: "0.5px solid rgba(251,113,133,0.2)" }}
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
-            >
-              {menuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
-        </div>
+          </li>
+        </ul>
 
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <div className="md:hidden mt-3 pt-3 border-t flex flex-col gap-1 max-h-[70vh] overflow-y-auto"
-            style={{ borderColor: "rgba(251,113,133,0.15)" }}
-          >
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => handleNav(link.href)}
-                className="text-left px-3 py-3 rounded-lg transition-all"
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "12px",
-                  color: activeSection === link.href.slice(1) ? "#fb7185" : "#9ca3af",
-                  background: activeSection === link.href.slice(1) ? "rgba(251,113,133,0.08)" : "transparent",
-                }}
-              >
-                {link.label}
-              </button>
-            ))}
-            <a
-              href="https://github.com/mehedinassah"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 rounded-md text-center py-3 text-white"
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "12px",
-                background: "linear-gradient(135deg, #fb7185, #f43f5e)",
-              }}
-            >
-              GitHub ↗
-            </a>
-          </div>
-        )}
+        <button
+          onClick={() => setMenuOpen((open) => !open)}
+          className="border-l-2 border-line px-4 text-ink transition-colors hover:bg-ink hover:text-paper md:hidden"
+          aria-label="Toggle navigation"
+        >
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </div>
+
+      {menuOpen ? (
+        <div className="border-b-2 border-line bg-paper md:hidden">
+          {navLinks.map((link) => (
+            <button
+              key={link.label}
+              onClick={() => handleNav(link.href)}
+              className={`flex w-full items-center gap-3 border-b border-line/20 px-5 py-4 text-left font-mono text-sm uppercase tracking-[0.12em] ${
+                activeSection === link.href.slice(1) ? "bg-ink text-paper" : "text-ink"
+              }`}
+            >
+              <span className="text-[10px] opacity-60">{link.index}</span>
+              {link.label}
+            </button>
+          ))}
+          <a
+            href="/resume.pdf"
+            className="flex w-full items-center px-5 py-4 font-mono text-sm uppercase tracking-[0.12em] text-ink"
+          >
+            Resume ↗
+          </a>
+        </div>
+      ) : null}
     </nav>
   );
 }

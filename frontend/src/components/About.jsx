@@ -1,177 +1,73 @@
 import { motion } from "framer-motion";
+import Education from "./Education";
 
 const techStack = [
-  { name: "Java", category: "Backend" },
-  { name: "Kotlin", category: "Mobile" },
-  { name: "Spring Boot", category: "Backend" },
-  { name: "React", category: "Frontend" },
-  { name: "Next.js", category: "Frontend" },
-  { name: "Android", category: "Mobile" },
-  { name: "Firebase", category: "Backend" },
-  { name: "Python", category: "AI/ML" },
-  { name: "TailwindCSS", category: "Frontend" },
+  "Java (backend)",
+  "Kotlin & Android",
+  "Spring Boot",
+  "React / Next.js",
+  "Firebase / Cloud",
+  "Python (ML)",
 ];
 
+const ease = [0.22, 1, 0.36, 1];
+
 export default function About() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
-    <section id="about" className="py-24 md:py-32 px-6 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          className="mb-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={itemVariants}
-        >
-          <p className="font-mono text-xs text-accent-blue uppercase tracking-widest mb-3">
-            About Me
-          </p>
-          <h2 className="font-display font-700 text-4xl md:text-5xl text-white">
-            Who I Am
+    <section id="about" className="section-shell border-t-2 border-line py-20 text-ink md:py-28">
+      <div className="mx-auto max-w-[100rem] px-4 md:px-8">
+        <div className="border-b-2 border-line pb-8">
+          <p className="section-kicker">About</p>
+          <h2 className="section-heading">
+            Curious by<br />default.
           </h2>
-        </motion.div>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Bio Section */}
+        <div className="grid border-x-2 border-b-2 border-line lg:grid-cols-[1fr_1fr]">
           <motion.div
-            className="space-y-6"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, ease }}
+            className="border-b-2 border-line p-7 lg:border-b-0 lg:border-r-2"
           >
-            {/* Profile Image */}
-            <motion.div className="relative w-48 h-48 md:w-64 md:h-64" variants={itemVariants}>
-              <div className="w-full h-full rounded-lg overflow-hidden border border-accent-slate/20 shadow-lg">
-                <img
-                  src="/me.png"
-                  alt="Mehedi Hassan"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-              {/* Available Badge */}
-              <motion.div
-                className="absolute bottom-4 right-4 flex items-center gap-2 bg-bg-primary/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-emerald-500/20"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-emerald-500/80 text-xs font-mono">Available</span>
-              </motion.div>
-            </motion.div>
-
-            {/* About Text */}
-            <motion.p
-              className="text-white/70 text-lg leading-relaxed"
-              variants={itemVariants}
-            >
-              Hi! I'm <span className="text-white font-600">Mehedi Hassan</span>, a Computer
-              Science student passionate about building{" "}
-              <span className="text-accent-blue font-500">scalable, user-centric software</span>.
-            </motion.p>
-
-            <motion.p className="text-accent-slate leading-relaxed" variants={itemVariants}>
-              I specialize in <span className="text-white font-500">Android development</span>,
-              {" "}
-              <span className="text-white font-500">full-stack web applications</span>, and
-              integrating <span className="text-white font-500">AI/ML technologies</span> into
-              products.
-            </motion.p>
-
-            <motion.p className="text-accent-slate leading-relaxed" variants={itemVariants}>
-              My goal is to create <span className="text-white font-500">impactful solutions</span>
-              {" "}
-              that solve real problems and scale globally. I'm currently looking for opportunities
-              to collaborate on exciting projects.
-            </motion.p>
-
-            {/* Quick Facts */}
-            <motion.div className="grid grid-cols-2 gap-4 pt-6" variants={itemVariants}>
+            <p className="section-kicker">How I work</p>
+            <ul className="mt-5 space-y-4 text-sm leading-relaxed text-inksoft">
               {[
-                { label: "Location", value: "Dhaka, Bangladesh" },
-                { label: "Focus", value: "Remote & On-site" },
-                { label: "Expertise", value: "Android + Web + AI" },
-                { label: "Status", value: "Available Now" },
-              ].map((item) => (
-                <div key={item.label} className="card p-4">
-                  <p className="text-accent-slate text-xs font-mono uppercase tracking-wide mb-1">
-                    {item.label}
-                  </p>
-                  <p className="text-white font-500 text-sm">{item.value}</p>
-                </div>
+                "Late-night experimentation is part of the process, not a side effect.",
+                "I prefer systems that are legible, debuggable, and honest about their limits.",
+                "Aesthetic choices should help comprehension, not hide weak structure.",
+              ].map((item, i) => (
+                <li key={item} className="flex gap-3">
+                  <span className="font-mono text-xs text-accent">0{i + 1}</span>
+                  <span>{item}</span>
+                </li>
               ))}
-            </motion.div>
+            </ul>
           </motion.div>
 
-          {/* Tech Stack */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            <motion.div className="mb-8" variants={itemVariants}>
-              <p className="font-mono text-xs text-accent-blue uppercase tracking-widest mb-6">
-                Tech Stack
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {techStack.map((tech, idx) => (
-                  <motion.div
-                    key={tech.name}
-                    className="card p-4 text-center group hover:bg-accent-slate/5 transition-colors"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: idx * 0.05 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -4 }}
-                  >
-                    <h4 className="text-white font-600 text-sm">{tech.name}</h4>
-                    <p className="text-accent-slate text-xs mt-1.5 font-mono">{tech.category}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+          <div>
+            <Education />
+          </div>
+        </div>
 
-            {/* Highlights */}
-            <motion.div className="card p-6" variants={itemVariants}>
-              <p className="text-accent-slate text-xs font-mono uppercase tracking-widest mb-4">
-                What Drives Me
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Building products that users love",
-                  "Clean, maintainable code practices",
-                  "Continuous learning and growth",
-                  "Contributing to open source",
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-3 text-accent-slate text-sm">
-                    <span className="w-1 h-1 rounded-full bg-accent-blue flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </motion.div>
+        <div className="border-x-2 border-b-2 border-line">
+          <p className="border-b-2 border-line px-7 py-4 font-mono text-[11px] uppercase tracking-[0.2em] text-inkfaint">
+            // core toolkit
+          </p>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3">
+            {techStack.map((item, i) => (
+              <li
+                key={item}
+                className={`flex items-center gap-3 px-7 py-4 font-display text-lg uppercase transition-colors hover:bg-accent hover:text-paper ${
+                  i % 3 !== 2 ? "lg:border-r-2" : ""
+                } ${i < techStack.length - (techStack.length % 3 || 3) ? "border-b-2" : ""} border-line`}
+              >
+                <span className="font-mono text-xs text-accent">→</span>
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

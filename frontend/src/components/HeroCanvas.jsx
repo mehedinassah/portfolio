@@ -1,176 +1,144 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+
+const quickStats = [
+  { no: "01", label: "Stack", value: "React + Spring Boot", detail: "Java REST APIs · deployed on Vercel" },
+  { no: "02", label: "Mobile", value: "Kotlin + MVVM", detail: "Android apps · maps & offline" },
+  { no: "03", label: "Currently", value: "Final-year CS", detail: "BRAC University, Dhaka" },
+];
+
+const marquee = [
+  "FULL-STACK",
+  "ANDROID",
+  "SPRING BOOT",
+  "REACT",
+  "KOTLIN",
+  "TYPESCRIPT",
+  "NEXT.JS",
+  "FIREBASE",
+];
 
 function scrollToSection(id) {
-  const section = document.getElementById(id);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  document.getElementById(id)?.scrollIntoView({ behavior: "auto", block: "start" });
 }
 
-export default function HeroAdvanced() {
+const ease = [0.22, 1, 0.36, 1];
+
+export default function HeroAdvanced({ skipBootAnimation = false }) {
+  const prefersReducedMotion = useReducedMotion();
+  const reveal = (delay = 0) => ({
+    initial: prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 22 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: skipBootAnimation ? 0.5 : 0.8, delay, ease },
+  });
+
   return (
-    <section
-      id="hero"
-      className="hero relative min-h-screen overflow-hidden flex flex-col"
-      style={{
-        backgroundColor: "#111827",
-        backgroundImage:
-          "radial-gradient(circle, rgba(251,113,133,0.12) 1px, transparent 1px)",
-        backgroundSize: "28px 28px",
-      }}
-    >
-      <div className="hero-body relative z-10 flex-1 flex items-center px-[60px]">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-8 lg:flex-row lg:items-center">
-          <motion.div
-            className="flex-1"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1
-              className="leading-none tracking-[-2px]"
-              style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800 }}
-            >
-              <span
-                className="block"
-                style={{ fontSize: "clamp(42px, 6vw, 72px)", color: "#f9fafb" }}
-              >
-                Mehedi
-              </span>
-              <span
-                className="block"
-                style={{
-                  fontSize: "clamp(42px, 6vw, 72px)",
-                  background: "linear-gradient(135deg, #fb7185, #f43f5e)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                Hassan
-              </span>
+    <section id="hero" className="section-shell relative overflow-hidden pt-16 text-ink">
+      <div className="mx-auto max-w-[100rem] px-4 pt-10 md:px-8 md:pt-16">
+        {/* top meta row */}
+        <motion.div
+          {...reveal(0)}
+          className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-line pb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-inksoft"
+        >
+          <span className="flex items-center gap-2">
+            <span className="h-2 w-2 bg-accent" />
+            Mehedi Hassan · Dhaka, Bangladesh
+          </span>
+          <span className="hidden sm:block">CS @ BRAC University</span>
+          <span>Available for work</span>
+        </motion.div>
+
+        <div className="grid gap-8 pt-8 lg:grid-cols-[1.35fr_0.65fr] lg:gap-12">
+          {/* headline column */}
+          <div>
+            <motion.p {...reveal(0.05)} className="section-kicker">
+              Full-stack &amp; Android developer
+            </motion.p>
+
+            <h1 className="font-display text-[clamp(3.4rem,12vw,11rem)] uppercase leading-[0.92] tracking-[0.01em]">
+              <motion.span {...reveal(0.1)} className="block">
+                Full-stack
+              </motion.span>
+              <motion.span {...reveal(0.18)} className="block">
+                &amp; Android
+              </motion.span>
+              <motion.span {...reveal(0.26)} className="block">
+                develo<span className="text-accent">per.</span>
+              </motion.span>
             </h1>
 
-            <p
-              className="mt-5"
-              style={{ fontSize: "15px", color: "#e5e7eb", maxWidth: "340px" }}
-            >
-              Backend Engineer building scalable systems.
-            </p>
+            <motion.p {...reveal(0.34)} className="mt-7 max-w-2xl text-base leading-relaxed text-inksoft md:text-lg">
+              I build websites for fun.
+            </motion.p>
 
-            <p
-              className="mt-4"
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "12px",
-                color: "#6b7280",
-                maxWidth: "320px",
-                lineHeight: 1.6,
-              }}
-            >
-              I design and build efficient APIs, systems, and real-world applications. CS student from Dhaka, passionate about system design and clean code.
-            </p>
-
-            <p
-              className="mt-6"
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "10px",
-                color: "#4b5563",
-                letterSpacing: "0.04em",
-              }}
-            >
-              20+ projects <span style={{ color: "#fb7185" }}>·</span> Backend-focused{" "}
-              <span style={{ color: "#fb7185" }}>·</span> System design
-            </p>
-
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="rounded-[7px] px-5 py-2.5 text-white"
-                style={{
-                  fontFamily: "'Syne', sans-serif",
-                  fontWeight: 600,
-                  fontSize: "12px",
-                  background: "linear-gradient(135deg, #fb7185, #f43f5e)",
-                }}
-              >
-                View Projects
+            <motion.div {...reveal(0.42)} className="mt-8 flex flex-wrap items-center gap-3">
+              <button onClick={() => scrollToSection("projects")} className="cta-primary">
+                View Work <ArrowRight size={14} />
               </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="rounded-[7px] px-5 py-2.5"
-                style={{
-                  fontFamily: "'Syne', sans-serif",
-                  fontWeight: 600,
-                  fontSize: "12px",
-                  color: "#fb7185",
-                  background: "transparent",
-                  border: "1px solid rgba(251,113,133,0.5)",
-                }}
-              >
-                Contact Me
+              <button onClick={() => scrollToSection("contact")} className="cta-secondary">
+                Contact
               </button>
-            </div>
-          </motion.div>
+              <a href="/resume.html" className="cta-secondary">
+                Resume <ArrowUpRight size={14} />
+              </a>
+            </motion.div>
+          </div>
 
-          <motion.div
-            className="relative h-[420px] w-[320px] flex-[0_0_320px] overflow-visible"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.12 }}
-          >
-            <div className="relative z-[2] mx-auto h-[380px] w-[280px]">
-              <img
-                src="/me.png"
-                alt="Mehedi Hassan"
-                className="h-[380px] w-[280px] object-cover object-top rounded-t-[12px]"
-                style={{ boxShadow: "0 0 60px rgba(251,113,133,0.15)" }}
-              />
-              <div
-                className="pointer-events-none absolute bottom-0 left-0 h-1/2 w-full"
-                style={{ background: "linear-gradient(to top, #111827 0%, transparent 100%)" }}
-              />
+          {/* portrait column */}
+          <motion.aside {...reveal(0.2)} className="lg:pt-2">
+            <div className="relative w-full max-w-sm lg:ml-auto">
+              <div className="absolute -right-3 -top-3 z-0 h-full w-full border-2 border-accent" aria-hidden="true" />
+              <div className="relative z-10 border-2 border-line bg-paper2">
+                <img
+                  src="/me.png"
+                  alt="Mehedi Hassan portrait"
+                  className="aspect-[4/5] w-full object-cover object-top grayscale contrast-110 transition-[filter] duration-500 hover:grayscale-0"
+                />
+                <div className="flex items-center justify-between border-t-2 border-line px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em]">
+                  <span>fig. 01</span>
+                  <span className="text-accent">// mehedi.h</span>
+                </div>
+              </div>
             </div>
+          </motion.aside>
+        </div>
+      </div>
 
-            <div
-              className="status-card absolute bottom-[40px] left-[-20px] z-[10] rounded-[9px] px-3.5 py-2.5"
-              style={{
-                background: "rgba(31,41,55,0.85)",
-                backdropFilter: "blur(8px)",
-                border: "0.5px solid rgba(251,113,133,0.2)",
-              }}
+      {/* marquee strip */}
+      <motion.div
+        {...reveal(0.5)}
+        className="mt-10 overflow-hidden border-y-2 border-line bg-ink py-3 text-paper"
+      >
+        <div className={prefersReducedMotion ? "flex justify-center" : "marquee-track"}>
+          {[...marquee, ...marquee].map((word, i) => (
+            <span key={i} className="mx-6 font-display text-xl uppercase tracking-wide">
+              {word} <span className="text-accent">/</span>
+            </span>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* quick stats: hard grid cells */}
+      <div className="mx-auto max-w-[100rem] px-4 md:px-8">
+        <div className="grid border-x-2 border-b-2 border-line md:grid-cols-3">
+          {quickStats.map((item, index) => (
+            <motion.div
+              key={item.label}
+              {...reveal(0.55 + index * 0.07)}
+              className={`group p-6 transition-colors hover:bg-ink hover:text-paper ${
+                index < 2 ? "border-b-2 border-line md:border-b-0 md:border-r-2" : ""
+              }`}
             >
-              <p
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "9px",
-                  color: "#fb7185",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                System Status
-              </p>
-              <div className="mt-1.5 flex items-center gap-1.5">
-                <span className="h-[5px] w-[5px] rounded-full" style={{ background: "#fb7185" }} />
-                <span style={{ fontSize: "10px", color: "#d1d5db" }}>Production</span>
+              <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-inkfaint group-hover:text-paper/60">
+                <span>{item.label}</span>
+                <span>{item.no}</span>
               </div>
-              <div className="mt-1 flex items-center gap-1.5">
-                <span className="h-[5px] w-[5px] rounded-full" style={{ background: "#fb7185" }} />
-                <span style={{ fontSize: "10px", color: "#d1d5db" }}>Zero Downtime</span>
-              </div>
-              <p
-                className="mt-1.5"
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "10px",
-                  color: "#6b7280",
-                }}
-              >
-                Uptime: 99.9%
+              <p className="mt-3 font-display text-2xl uppercase leading-none">{item.value}</p>
+              <p className="mt-2 font-mono text-[11px] leading-relaxed text-inksoft group-hover:text-paper/70">
+                {item.detail}
               </p>
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
