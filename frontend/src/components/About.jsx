@@ -31,19 +31,24 @@ export default function About() {
             transition={{ duration: 0.5, ease }}
             className="border-b-2 border-line p-7 lg:border-b-0 lg:border-r-2"
           >
-            <p className="section-kicker">How I work</p>
-            <ul className="mt-5 space-y-4 text-sm leading-relaxed text-inksoft">
-              {[
-                "Late-night experimentation is part of the process, not a side effect.",
-                "I prefer systems that are legible, debuggable, and honest about their limits.",
-                "Aesthetic choices should help comprehension, not hide weak structure.",
-              ].map((item, i) => (
-                <li key={item} className="flex gap-3">
-                  <span className="font-mono text-xs text-accent">0{i + 1}</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="section-kicker">Who I am</p>
+            <div className="mt-5 space-y-4 text-sm leading-relaxed text-inksoft md:text-base">
+              <p>
+                I'm Mehedi, a soon-to-be CS graduate from Dhaka. I got into Full-Stack Web Development mainly because
+                I've always loved the idea of making cool stuff for the internet. Back in undergrad, the courses I
+                genuinely enjoyed were always the web design and Android development ones, so naturally I just kept
+                going deeper into it.
+              </p>
+              <p>
+                Now I mostly build things because I enjoy it. I stay up way too late chasing random ideas, spend hours
+                fixing one stupid error, and the moment things finally work, I immediately start thinking about the next
+                thing I want to build.
+              </p>
+              <p>
+                For me, coding never really felt like "work." It's more like a cycle of curiosity, frustration,
+                experimenting, rebuilding, and somehow enjoying every part of it anyway.
+              </p>
+            </div>
           </motion.div>
 
           <div>
