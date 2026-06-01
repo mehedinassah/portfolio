@@ -41,7 +41,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper/40 md:flex-row md:items-center md:justify-between">
+        <div className="mt-8 flex flex-col gap-1.5 font-mono text-[9px] uppercase tracking-[0.1em] text-paper/40 sm:text-[10px] md:flex-row md:items-center md:justify-between md:gap-2 md:text-[11px] md:tracking-[0.18em]">
           <p>© {year} Mehedi Hassan · built with React</p>
           <DhakaTime />
         </div>

@@ -61,12 +61,10 @@ export default function About() {
             // core toolkit
           </p>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-3">
-            {techStack.map((item, i) => (
+            {techStack.map((item) => (
               <li
                 key={item}
-                className={`flex items-center gap-3 px-7 py-4 font-display text-lg uppercase transition-colors hover:bg-accent hover:text-paper ${
-                  i % 3 !== 2 ? "lg:border-r-2" : ""
-                } ${i < techStack.length - (techStack.length % 3 || 3) ? "border-b-2" : ""} border-line`}
+                className="flex items-center gap-3 border-b-2 border-r-2 border-line px-7 py-4 font-display text-lg uppercase transition-colors hover:bg-accent hover:text-paper"
               >
                 <span className="font-mono text-xs text-accent">→</span>
                 {item}
