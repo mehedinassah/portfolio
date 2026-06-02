@@ -20,21 +20,20 @@ export default function MehediOSLoader({ onComplete }) {
   };
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      const t = setTimeout(finish, 400);
-      return () => clearTimeout(t);
-    }
-    let rafId;
-    let startTs = null;
-    const step = (ts) => {
-      if (startTs === null) startTs = ts;
-      const pct = Math.min(100, Math.round(((ts - startTs) / DURATION) * 100));
+    const ms = prefersReducedMotion ? 400 : DURATION;
+    const start = Date.now();
+    // wall-clock progress (robust to mobile rAF/interval throttling)
+    const interval = setInterval(() => {
+      const pct = Math.min(100, Math.round(((Date.now() - start) / ms) * 100));
       setProgress(pct);
-      if (pct < 100) rafId = requestAnimationFrame(step);
-      else setTimeout(finish, 300);
+      if (pct >= 100) clearInterval(interval);
+    }, 80);
+    // guaranteed completion even if the tab was throttled/backgrounded
+    const done = setTimeout(finish, ms + 250);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(done);
     };
-    rafId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(rafId);
   }, [prefersReducedMotion]);
 
   return (

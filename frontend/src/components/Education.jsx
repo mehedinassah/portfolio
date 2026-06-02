@@ -8,7 +8,6 @@ const education = [
     year: "2022 to 2026",
     place: "BRAC University",
     title: "BSc in Computer Science",
-    note: "Final year. Software engineering, algorithms, AI, and mobile / web development.",
     current: true,
   },
   {
