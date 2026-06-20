@@ -3,6 +3,14 @@ import { ArrowUpRight } from "lucide-react";
 
 const projects = [
   {
+    title: "Perico ERP",
+    tag: "web · fullstack",
+    blurb: "A full-stack ERP and inventory platform with POS, barcode scanning, sales & purchase tracking, customer/supplier ledgers, warehouses, and dashboards. Next.js + Prisma on a Supabase Postgres backend.",
+    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Supabase"],
+    github: "https://github.com/mehedinassah/erp-website",
+    live: "https://perico-erp.vercel.app/",
+  },
+  {
     title: "banauAI",
     tag: "ai · web",
     blurb: "An AI-powered web app built on a modern TypeScript + React stack, focused on fast product iteration.",
